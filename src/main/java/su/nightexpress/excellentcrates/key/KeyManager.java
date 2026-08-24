@@ -18,6 +18,7 @@ import su.nightexpress.excellentcrates.dialog.key.KeyNameDialog;
 import su.nightexpress.excellentcrates.key.dialog.KeyDialogs;
 import su.nightexpress.excellentcrates.registry.CratesRegistries;
 import su.nightexpress.excellentcrates.user.CrateUser;
+import su.nightexpress.excellentcrates.util.FoliaScheduler;
 import su.nightexpress.excellentcrates.util.ItemHelper;
 import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.manager.AbstractManager;
@@ -47,7 +48,7 @@ public class KeyManager extends AbstractManager<CratesPlugin> {
         this.loadCost();
         this.loadKeys();
         this.loadDialogs();
-        this.plugin.runTask(task -> this.reportProblems()); // When everything is loaded.
+        FoliaScheduler.runTask(this.plugin, this::reportProblems); // When everything is loaded.
 
         this.addListener(new KeyListener(this.plugin, this));
         this.addAsyncTask(this::saveKeys, Config.CRATE_SAVE_INTERVAL.get()); // TODO Config
