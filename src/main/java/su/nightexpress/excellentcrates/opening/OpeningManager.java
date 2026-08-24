@@ -13,9 +13,9 @@ import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.world.provider.DummyProvider;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.manager.AbstractManager;
-import su.nightexpress.nightcore.util.FileUtil;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.util.FileUtil;
 
 import java.io.File;
 import java.util.*;

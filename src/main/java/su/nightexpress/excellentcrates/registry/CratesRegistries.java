@@ -6,15 +6,16 @@ import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.api.cost.CostType;
 import su.nightexpress.excellentcrates.crate.effect.CrateEffect;
 import su.nightexpress.excellentcrates.crate.effect.impl.*;
-import su.nightexpress.nightcore.bridge.registry.NightRegistry;
+import com.notauraaa.folianightcore.util.registry.SimpleRegistry;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CratesRegistries {
 
-    public static final NightRegistry<String, CrateEffect> EFFECT = new NightRegistry<>();
-    public static final NightRegistry<String, CostType> COST_TYPE = new NightRegistry<>();
+    public static final SimpleRegistry<String, CrateEffect> EFFECT = new SimpleRegistry<>();
+    public static final SimpleRegistry<String, CostType> COST_TYPE = new SimpleRegistry<>();
 
     public static void load(@NotNull CratesPlugin plugin) {
         registerDefaultEffects();
@@ -48,17 +49,17 @@ public class CratesRegistries {
 
     @NotNull
     public static CrateEffect effectOrDummy(@NotNull String id) {
-        return EFFECT.lookup(id).orElse(DummyEffect.INSTANCE);
+        return EFFECT.byKey(id).orElse(DummyEffect.INSTANCE);
     }
 
     @NotNull
-    public static Set<CrateEffect> getEffects() {
+    public static Collection<CrateEffect> getEffects() {
         return EFFECT.values();
     }
 
     @Nullable
     public static CostType getCostType(@NotNull String id) {
-        return COST_TYPE.byKey(id);
+        return COST_TYPE.getByKey(id);
     }
 
     @NotNull

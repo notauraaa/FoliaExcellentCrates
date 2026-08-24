@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.excellentcrates.api.crate.Reward;
-import su.nightexpress.nightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.FileConfig;
 
 import java.util.function.UnaryOperator;
 

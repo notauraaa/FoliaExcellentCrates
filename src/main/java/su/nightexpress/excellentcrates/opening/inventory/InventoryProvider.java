@@ -15,12 +15,12 @@ import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerProvider
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerType;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.AnimationProvider;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.RewardProvider;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.util.BukkitThing;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.NightMessage;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.util.BukkitThing;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.FoliaMessage;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -76,7 +76,7 @@ public class InventoryProvider extends AbstractProvider {
         this.defaultItems.clear();
 
         config.getSection("Content.Default").forEach(sId -> {
-            NightItem item = config.getCosmeticItem("Content.Default." + sId + ".Item");
+            FoliaItem item = config.getCosmeticItem("Content.Default." + sId + ".Item");
             int[] slots = config.getIntArray("Content.Default." + sId + ".Slots");
 
             this.defaultItems.put(sId.toLowerCase(), item.toMenuItem().setSlots(slots).build());
@@ -128,7 +128,7 @@ public class InventoryProvider extends AbstractProvider {
     @Override
     @NotNull
     public InventoryOpening createOpening(@NotNull Player player, @NotNull CrateSource source, @Nullable Cost cost) {
-        InventoryView view = this.invType.typed().create(player, NightMessage.asLegacy(source.getCrate().replacePlaceholders().apply(this.invTitle)));
+        InventoryView view = this.invType.typed().create(player, FoliaMessage.asLegacy(source.getCrate().replacePlaceholders().apply(this.invTitle)));
 
         return new InventoryOpening(this.plugin, this, view, player, source, cost);
     }

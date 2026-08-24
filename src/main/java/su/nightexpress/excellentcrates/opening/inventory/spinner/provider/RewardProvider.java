@@ -8,10 +8,10 @@ import su.nightexpress.excellentcrates.opening.inventory.InventoryOpening;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerProvider;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerData;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.impl.RewardSpinner;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
-import su.nightexpress.nightcore.util.Lists;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
+import com.notauraaa.folianightcore.util.Lists;
 
 import java.util.HashSet;
 import java.util.Objects;

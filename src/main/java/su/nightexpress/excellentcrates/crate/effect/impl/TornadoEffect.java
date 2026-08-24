@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.effect.CrateEffect;
 import su.nightexpress.excellentcrates.crate.effect.EffectId;
-import su.nightexpress.nightcore.util.wrapper.UniParticle;
+import com.notauraaa.folianightcore.util.wrapper.UniParticle;
 
 import java.util.ArrayList;
 import java.util.List;

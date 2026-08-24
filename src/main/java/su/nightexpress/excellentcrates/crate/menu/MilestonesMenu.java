@@ -13,18 +13,18 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.Milestone;
 import su.nightexpress.excellentcrates.user.CrateUser;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.ConfigBased;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.data.MenuLoader;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.NumberUtil;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.tag.Tags.*;
+import static com.notauraaa.folianightcore.util.text.tag.Tags.*;
 
 @SuppressWarnings("UnstableApiUsage")
 public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implements Filled<Milestone>, ConfigBased {
@@ -44,14 +44,14 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
     private String       mileIncName;
     private List<String> mileIncLore;
     private int[]        mileSlots;
-    private NightItem    mileCompItem;
-    private NightItem    mileIncItem;
+    private FoliaItem    mileCompItem;
+    private FoliaItem    mileIncItem;
 
     private boolean   pointerEnabled;
     private int       pointerPerMile;
     private int[]     pointerSlots;
-    private NightItem pointerComp;
-    private NightItem pointerInc;
+    private FoliaItem pointerComp;
+    private FoliaItem pointerInc;
 
     public MilestonesMenu(@NotNull CratesPlugin plugin) {
         super(plugin, MenuType.GENERIC_9X3, BLACK.wrap("Crate Milestones"));
@@ -81,16 +81,16 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         autoFill.setItems(crate.getMilestones().stream().sorted(Comparator.comparing(Milestone::getOpenings)).toList());
         autoFill.setItemCreator(milestone -> {
             Reward reward = milestone.getReward();
-            if (reward == null) return new NightItem(Material.AIR);
+            if (reward == null) return new FoliaItem(Material.AIR);
 
             int openings = user.getCrateData(crate).getMilestone();
             boolean isCompleted = openings >= milestone.getOpenings();
             String name;
             List<String> lore;
-            NightItem item = NightItem.fromItemStack(reward.getPreviewItem());
+            FoliaItem item = FoliaItem.fromItemStack(reward.getPreviewItem());
 
             if (this.pointerEnabled) {
-                NightItem pointerItem = (isCompleted ? this.pointerComp : this.pointerInc).copy();
+                FoliaItem pointerItem = (isCompleted ? this.pointerComp : this.pointerInc).copy();
                 int[] pointerSlots = new int[this.pointerPerMile];
                 int start = this.pointerPerMile * counter.getAndIncrement();
                 System.arraycopy(this.pointerSlots, start, pointerSlots, 0, this.pointerPerMile);
@@ -165,13 +165,13 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
 
         if (ConfigValue.create("Milestones.Completed.Custom_Item.Enabled", true).read(config)) {
             this.mileCompItem = ConfigValue.create("Milestones.Completed.Custom_Item.Value",
-                NightItem.asCustomHead(SKIN_CHECK_MARK)
+                FoliaItem.asCustomHead(SKIN_CHECK_MARK)
             ).read(config);
         }
 
         if (ConfigValue.create("Milestones.Incompleted.Custom_Item.Enabled", false).read(config)) {
             this.mileIncItem = ConfigValue.create("Milestones.Incompleted.Custom_Item.Value",
-                NightItem.asCustomHead(SKIN_WRONG_MARK)
+                FoliaItem.asCustomHead(SKIN_WRONG_MARK)
             ).read(config);
         }
 
@@ -182,11 +182,11 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         this.pointerSlots = ConfigValue.create("Milestones.Pointer.Slots", new int[]{1,19,3,21,5,23,7,25}).read(config);
 
         this.pointerComp = ConfigValue.create("Milestones.Pointer.Completed",
-            new NightItem(Material.LIME_STAINED_GLASS_PANE)
+            new FoliaItem(Material.LIME_STAINED_GLASS_PANE)
         ).read(config);
 
         this.pointerInc = ConfigValue.create("Milestones.Pointer.Incompleted",
-            new NightItem(Material.WHITE_STAINED_GLASS_PANE)
+            new FoliaItem(Material.WHITE_STAINED_GLASS_PANE)
         ).read(config);
 
         loader.addDefaultItem(MenuItem.buildReturn(this, 22, (viewer, event) -> {
@@ -197,10 +197,10 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         loader.addDefaultItem(MenuItem.buildNextPage(this, 17).setPriority(MenuItem.HIGH_PRIORITY));
         loader.addDefaultItem(MenuItem.buildPreviousPage(this, 9).setPriority(MenuItem.HIGH_PRIORITY));
 
-        loader.addDefaultItem(NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE).toMenuItem()
+        loader.addDefaultItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE).toMenuItem()
             .setSlots(0,1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26));
 
-        loader.addDefaultItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE).toMenuItem()
+        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).toMenuItem()
             .setSlots(9,10,11,12,13,14,15,16,17));
     }
 }

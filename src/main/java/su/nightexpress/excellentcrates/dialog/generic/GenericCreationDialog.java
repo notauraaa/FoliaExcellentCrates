@@ -4,11 +4,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.dialog.Dialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
-import su.nightexpress.nightcore.util.Strings;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.util.Strings;
 
 public abstract class GenericCreationDialog<T> extends Dialog<T> {
 

@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.*;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
-import su.nightexpress.nightcore.manager.AbstractListener;
+import com.notauraaa.folianightcore.manager.AbstractListener;
 
 import java.util.stream.Stream;
 

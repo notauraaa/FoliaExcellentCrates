@@ -18,28 +18,28 @@ import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.crate.reward.RewardDialogs;
 import su.nightexpress.excellentcrates.dialog.reward.RewardCreationDialog;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.click.ClickResult;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.GREEN;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.SOFT_YELLOW;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.GREEN;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.SOFT_YELLOW;
 
 public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data> implements Filled<Reward>, LangContainer {
 
@@ -109,14 +109,14 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
         this.addItem(MenuItem.buildNextPage(this, 41));
         this.addItem(MenuItem.buildPreviousPage(this, 39));
 
-        this.addItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(0, 36).toArray())
             .setPriority(-1)
         );
 
-        this.addItem(NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(36, 45).toArray())
@@ -149,7 +149,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(this.getLink(viewer).crate.getRewards());
         autoFill.setItemCreator(reward -> {
-            return NightItem.fromItemStack(reward.getPreviewItem())
+            return FoliaItem.fromItemStack(reward.getPreviewItem())
                 .hideAllComponents()
                 .localized(LOCALE_REWARD)
                 .replacement(replacer -> replacer
@@ -200,7 +200,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
     protected void onPrepare(@NotNull MenuViewer viewer, @NotNull InventoryView view) {
         Data data = this.getLink(viewer);
 
-        viewer.addItem(NightItem.fromType(Material.DROPPER)
+        viewer.addItem(FoliaItem.fromType(Material.DROPPER)
             .localized(LOCALE_MASS_MODE)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(data.massMode))
@@ -216,7 +216,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.PISTON)
+        viewer.addItem(FoliaItem.fromType(Material.PISTON)
             .localized(LOCALE_ARRANGE_MODE)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(data.arrangeMode))

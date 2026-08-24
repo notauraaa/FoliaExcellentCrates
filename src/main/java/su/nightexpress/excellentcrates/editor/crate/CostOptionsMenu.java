@@ -17,23 +17,23 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.cost.CostDialogs;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.click.ClickResult;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.List;
 
 import static su.nightexpress.excellentcrates.Placeholders.COST_NAME;
 import static su.nightexpress.excellentcrates.Placeholders.GENERIC_STATE;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.GREEN;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.GREEN;
 
 public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Data> implements LangContainer {
 
@@ -75,21 +75,21 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             this.runNextTick(() -> plugin.getEditorManager().openCosts(viewer.getPlayer(), this.getLink(viewer).crate));
         }));
 
-        this.addItem(NightItem.fromType(Material.GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(20,21,22,23,24)
         );
 
-        this.addItem(NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(45,46,52,53)
         );
 
-        this.addItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
@@ -122,7 +122,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             this.flush(player);
         };
 
-        viewer.addItem(NightItem.fromType(Material.NAME_TAG)
+        viewer.addItem(FoliaItem.fromType(Material.NAME_TAG)
             .localized(LOCALE_OPTION_NAME)
             .replacement(replacer -> replacer.replace(cost.replacePlaceholders()))
             .toMenuItem()
@@ -131,7 +131,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             .build()
         );
 
-        viewer.addItem(NightItem.fromItemStack(cost.getIconStack())
+        viewer.addItem(FoliaItem.fromItemStack(cost.getIconStack())
             .hideAllComponents()
             .localized(LOCALE_OPTION_ICON)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(this.itemDetection)))
@@ -179,7 +179,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
                 });
             }
             else {
-                builder = NightItem.fromType(Material.LIME_DYE)
+                builder = FoliaItem.fromType(Material.LIME_DYE)
                     .localized(LOCALE_ENTRY_VACANT)
                     .toMenuItem()
                     .setHandler((viewer1, event) -> this.dialogs.show(player, CostDialogs.ENTRY_CREATION, cost, saveAndFlush));

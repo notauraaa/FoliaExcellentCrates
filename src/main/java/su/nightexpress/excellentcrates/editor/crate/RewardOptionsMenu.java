@@ -20,22 +20,22 @@ import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.crate.reward.RewardDialogs;
 import su.nightexpress.excellentcrates.dialog.reward.RewardPreviewDialog;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.click.ClickResult;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implements LangContainer {
 
@@ -135,7 +135,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
         Crate crate = reward.getCrate();
         Runnable flush = () -> this.flush(player);
 
-        viewer.addItem(NightItem.fromItemStack(reward.getPreviewItem())
+        viewer.addItem(FoliaItem.fromItemStack(reward.getPreviewItem())
             .localized(reward.getType() == RewardType.ITEM ? LOCALE_PREVIEW_CUSTOM : LOCALE_PREVIEW_NORMAL)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_REWARD_PREVIEW, reward.getPreview().isValid()))
@@ -168,7 +168,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
         );
 
         if (reward instanceof ItemReward itemReward) {
-            viewer.addItem(NightItem.fromType(Material.BUNDLE)
+            viewer.addItem(FoliaItem.fromType(Material.BUNDLE)
                 .hideAllComponents()
                 .localized(LOCALE_ITEMS)
                 .replacement(replacer -> replacer
@@ -181,7 +181,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             );
         }
         else if (reward instanceof CommandReward commandReward) {
-            viewer.addItem(NightItem.fromType(Material.COMMAND_BLOCK)
+            viewer.addItem(FoliaItem.fromType(Material.COMMAND_BLOCK)
                 .hideAllComponents()
                 .localized(LOCALE_COMMANDS)
                 .replacement(replacer -> replacer
@@ -193,14 +193,14 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
                 }).build()
             );
 
-            viewer.addItem(NightItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
+            viewer.addItem(FoliaItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
                 .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
                 .toMenuItem().setSlots(30).setHandler((viewer1, event) -> {
                     this.dialogs.show(player, RewardDialogs.NAME, commandReward, flush);
                 }).build()
             );
 
-            viewer.addItem(NightItem.fromType(Material.WRITABLE_BOOK).localized(LOCALE_DESCRIPTION)
+            viewer.addItem(FoliaItem.fromType(Material.WRITABLE_BOOK).localized(LOCALE_DESCRIPTION)
                 .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
                 .toMenuItem().setSlots(32).setHandler((viewer1, event) -> {
                     this.dialogs.show(player, RewardDialogs.DESCRIPTION, commandReward, flush);
@@ -208,14 +208,14 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             );
         }
 
-        viewer.addItem(NightItem.fromType(Material.GLISTERING_MELON_SLICE).localized(LOCALE_RARIRY_WEIGHT)
+        viewer.addItem(FoliaItem.fromType(Material.GLISTERING_MELON_SLICE).localized(LOCALE_RARIRY_WEIGHT)
             .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
             .toMenuItem().setSlots(12).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.WEIGHT, reward, flush);
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.ENDER_PEARL).localized(LOCALE_BROADCAST)
+        viewer.addItem(FoliaItem.fromType(Material.ENDER_PEARL).localized(LOCALE_BROADCAST)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.isBroadcast())))
             .toMenuItem().setSlots(13).setHandler((viewer1, event) -> {
                 reward.setBroadcast(!reward.isBroadcast());
@@ -224,21 +224,21 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.REDSTONE).localized(LOCALE_PERMISSIONS)
+        viewer.addItem(FoliaItem.fromType(Material.REDSTONE).localized(LOCALE_PERMISSIONS)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(reward.getIgnoredPermissions().size() + reward.getRequiredPermissions().size())))
             .toMenuItem().setSlots(14).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.PERMISSIONS, reward, flush);
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.COMPARATOR).localized(LOCALE_LIMITS)
+        viewer.addItem(FoliaItem.fromType(Material.COMPARATOR).localized(LOCALE_LIMITS)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.getLimits().isEnabled())))
             .toMenuItem().setSlots(15).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.LIMITS, reward, flush);
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
+        viewer.addItem(FoliaItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
             .toMenuItem().setSlots(53).setHandler((viewer1, event) -> {
                 if (event.getClick() != ClickType.DROP) return;
 

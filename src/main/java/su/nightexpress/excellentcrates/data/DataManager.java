@@ -10,7 +10,7 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.data.crate.GlobalCrateData;
 import su.nightexpress.excellentcrates.crate.reward.RewardKey;
 import su.nightexpress.excellentcrates.data.reward.RewardData;
-import su.nightexpress.nightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.manager.AbstractManager;
 
 import java.util.HashSet;
 import java.util.Map;

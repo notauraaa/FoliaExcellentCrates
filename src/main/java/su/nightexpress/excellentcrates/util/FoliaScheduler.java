@@ -2,11 +2,11 @@ package su.nightexpress.excellentcrates.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public final class FoliaScheduler {
@@ -17,17 +17,20 @@ public final class FoliaScheduler {
 
     private static boolean isFoliaServer() {
         try {
-            Class.forName("io.papermc.paper.threadedregions.scheduler.FoliaScheduler");
-            return Bukkit.getServer().getClass().getSimpleName().equals("FoliaServer") 
-                || Bukkit.getScheduler().getClass().getSimpleName().equals("FoliaScheduler");
+            Class.forName("io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler");
+            return true;
         } catch (ClassNotFoundException ignored) {
             return false;
         }
     }
 
+    private static Consumer<io.papermc.paper.threadedregions.scheduler.ScheduledTask> wrap(@NotNull Runnable task) {
+        return scheduledTask -> task.run();
+    }
+
     public static void runTask(@NotNull Plugin plugin, @NotNull Runnable task) {
         if (IS_FOLIA) {
-            Bukkit.getGlobalRegionScheduler().run(plugin, task);
+            Bukkit.getGlobalRegionScheduler().run(plugin, wrap(task));
         } else {
             Bukkit.getScheduler().runTask(plugin, task);
         }
@@ -35,7 +38,7 @@ public final class FoliaScheduler {
 
     public static void runTaskLater(@NotNull Plugin plugin, @NotNull Runnable task, long delayTicks) {
         if (IS_FOLIA) {
-            Bukkit.getGlobalRegionScheduler().runDelayed(plugin, task, delayTicks);
+            Bukkit.getGlobalRegionScheduler().runDelayed(plugin, wrap(task), delayTicks);
         } else {
             Bukkit.getScheduler().runTaskLater(plugin, task, delayTicks);
         }
@@ -43,7 +46,7 @@ public final class FoliaScheduler {
 
     public static void runTaskTimer(@NotNull Plugin plugin, @NotNull Runnable task, long delayTicks, long periodTicks) {
         if (IS_FOLIA) {
-            Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, task, delayTicks, periodTicks);
+            Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, wrap(task), delayTicks, periodTicks);
         } else {
             Bukkit.getScheduler().runTaskTimer(plugin, task, delayTicks, periodTicks);
         }
@@ -51,7 +54,7 @@ public final class FoliaScheduler {
 
     public static void runTaskAsync(@NotNull Plugin plugin, @NotNull Runnable task) {
         if (IS_FOLIA) {
-            Bukkit.getAsyncScheduler().runNow(plugin, task);
+            Bukkit.getAsyncScheduler().runNow(plugin, wrap(task));
         } else {
             Bukkit.getScheduler().runTaskAsynchronously(plugin, task);
         }
@@ -59,7 +62,7 @@ public final class FoliaScheduler {
 
     public static void runTaskLaterAsync(@NotNull Plugin plugin, @NotNull Runnable task, long delayTicks) {
         if (IS_FOLIA) {
-            Bukkit.getAsyncScheduler().runDelayed(plugin, task, delayTicks);
+            Bukkit.getAsyncScheduler().runDelayed(plugin, wrap(task), delayTicks * 50L, TimeUnit.MILLISECONDS);
         } else {
             Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, task, delayTicks);
         }
@@ -67,7 +70,7 @@ public final class FoliaScheduler {
 
     public static void runAtLocation(@NotNull Plugin plugin, @NotNull Location location, @NotNull Runnable task) {
         if (IS_FOLIA) {
-            Bukkit.getRegionScheduler().run(plugin, location, task);
+            Bukkit.getRegionScheduler().run(plugin, location, wrap(task));
         } else {
             Bukkit.getScheduler().runTask(plugin, task);
         }
@@ -75,7 +78,7 @@ public final class FoliaScheduler {
 
     public static void runDelayedAtLocation(@NotNull Plugin plugin, @NotNull Location location, @NotNull Runnable task, long delayTicks) {
         if (IS_FOLIA) {
-            Bukkit.getRegionScheduler().runDelayed(plugin, location, task, delayTicks);
+            Bukkit.getRegionScheduler().runDelayed(plugin, location, wrap(task), delayTicks);
         } else {
             Bukkit.getScheduler().runTaskLater(plugin, task, delayTicks);
         }
@@ -83,7 +86,7 @@ public final class FoliaScheduler {
 
     public static void runAtFixedRateAtLocation(@NotNull Plugin plugin, @NotNull Location location, @NotNull Runnable task, long delayTicks, long periodTicks) {
         if (IS_FOLIA) {
-            Bukkit.getRegionScheduler().runAtFixedRate(plugin, location, task, delayTicks, periodTicks);
+            Bukkit.getRegionScheduler().runAtFixedRate(plugin, location, wrap(task), delayTicks, periodTicks);
         } else {
             Bukkit.getScheduler().runTaskTimer(plugin, task, delayTicks, periodTicks);
         }
@@ -91,7 +94,7 @@ public final class FoliaScheduler {
 
     public static void runAtEntity(@NotNull Plugin plugin, @NotNull Player player, @NotNull Runnable task) {
         if (IS_FOLIA) {
-            Bukkit.getRegionScheduler().run(plugin, player, task);
+            player.getScheduler().run(plugin, wrap(task), null);
         } else {
             Bukkit.getScheduler().runTask(plugin, task);
         }

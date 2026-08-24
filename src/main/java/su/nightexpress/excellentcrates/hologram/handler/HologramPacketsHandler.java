@@ -13,8 +13,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.hologram.entity.FakeEntity;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.text.night.NightMessage;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.text.night.FoliaMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class HologramPacketsHandler extends AbstractHologramHandler {
     public void sendHologramPackets(@NotNull Player player, @NotNull FakeEntity entity, boolean needSpawn, @NotNull String textLine) {
         PacketWrapper<?> dataPacket = this.createMetadataPacket(entity.getId(), dataList -> {
             dataList.add(new EntityData<>(15, EntityDataTypes.BYTE, this.billboard));
-            dataList.add(new EntityData<>(23, EntityDataTypes.COMPONENT, NightMessage.asJson(textLine)));
+            dataList.add(new EntityData<>(23, EntityDataTypes.COMPONENT, FoliaMessage.asJson(textLine)));
             dataList.add(new EntityData<>(24, EntityDataTypes.INT, this.lineWidth));
             dataList.add(new EntityData<>(25, EntityDataTypes.INT, this.backgroundColor));
             dataList.add(new EntityData<>(26, EntityDataTypes.BYTE, this.textOpacity));

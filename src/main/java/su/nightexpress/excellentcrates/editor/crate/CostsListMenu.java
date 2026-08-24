@@ -13,21 +13,21 @@ import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.cost.CostDialogs;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements LangContainer {
 
@@ -88,14 +88,14 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
             this.runNextTick(() -> this.plugin.getEditorManager().openOptionsMenu(viewer.getPlayer(), this.getLink(viewer)));
         }));
 
-        this.addItem(NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(45,46,52,53)
         );
 
-        this.addItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
@@ -123,7 +123,7 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                 boolean isValid = cost.isValid();
                 boolean hasInvalids = cost.hasInvalids();
 
-                toggleBuilder = NightItem.fromType(cost.isEnabled() ? Material.LIME_DYE : Material.GRAY_DYE)
+                toggleBuilder = FoliaItem.fromType(cost.isEnabled() ? Material.LIME_DYE : Material.GRAY_DYE)
                     .localized(cost.isEnabled() ? LOCALE_TOGGLE_ENABLED : LOCALE_TOGGLE_DISABLED)
                     .toMenuItem()
                     .setHandler((viewer1, event) -> {
@@ -132,7 +132,7 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                         this.runNextTick(() -> this.flush(viewer));
                     });
 
-                entryBuilder = NightItem.fromItemStack(cost.getIconStack())
+                entryBuilder = FoliaItem.fromItemStack(cost.getIconStack())
                     .localized(cost.isEmpty() ? LOCALE_DATA_EMPTY : LOCALE_DATA_FILLED)
                     .replacement(replacer -> replacer
                         .replace(cost.replacePlaceholders())
@@ -153,15 +153,15 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                         this.runNextTick(() -> plugin.getEditorManager().openCostOptions(player, crate, cost));
                     });
 
-                statusBuilder = NightItem.fromType(!isValid ? Material.RED_STAINED_GLASS_PANE : (hasInvalids ? Material.YELLOW_STAINED_GLASS_PANE : Material.LIME_STAINED_GLASS_PANE))
+                statusBuilder = FoliaItem.fromType(!isValid ? Material.RED_STAINED_GLASS_PANE : (hasInvalids ? Material.YELLOW_STAINED_GLASS_PANE : Material.LIME_STAINED_GLASS_PANE))
                     .localized(!isValid ? LOCALE_STATUS_BAD : (hasInvalids ? LOCALE_STATUS_WARN : LOCALE_STATUS_GOOD))
                     .toMenuItem();
             }
             else {
-                toggleBuilder = NightItem.fromType(Material.GRAY_DYE).localized(LOCALE_TOGGLE_NOTHING).toMenuItem();
-                statusBuilder = NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE).localized(LOCALE_STATUS_NOTHING).toMenuItem();
+                toggleBuilder = FoliaItem.fromType(Material.GRAY_DYE).localized(LOCALE_TOGGLE_NOTHING).toMenuItem();
+                statusBuilder = FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).localized(LOCALE_STATUS_NOTHING).toMenuItem();
 
-                entryBuilder = NightItem.fromType(Material.STRUCTURE_VOID)
+                entryBuilder = FoliaItem.fromType(Material.STRUCTURE_VOID)
                     .localized(LOCALE_DATA_VACANT)
                     .hideAllComponents()
                     .toMenuItem()

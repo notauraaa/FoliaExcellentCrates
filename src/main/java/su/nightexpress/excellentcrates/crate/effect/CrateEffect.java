@@ -4,8 +4,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.crate.effect.impl.DummyEffect;
-import su.nightexpress.nightcore.util.LocationUtil;
-import su.nightexpress.nightcore.util.wrapper.UniParticle;
+import com.notauraaa.folianightcore.util.LocationUtil;
+import com.notauraaa.folianightcore.util.wrapper.UniParticle;
 
 public abstract class CrateEffect {
 

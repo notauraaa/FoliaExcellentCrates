@@ -3,11 +3,11 @@ package su.nightexpress.excellentcrates.api.cost;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 public interface CostEntry {
 
-    @NotNull NightItem getEditorIcon();
+    @NotNull FoliaItem getEditorIcon();
 
     @NotNull String format();
 

@@ -11,24 +11,24 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.reward.RewardFactory;
 import su.nightexpress.excellentcrates.dialog.Dialog;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.common.NightNbtHolder;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.button.WrappedActionButton;
-import su.nightexpress.nightcore.bridge.dialog.wrap.input.WrappedDialogInput;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.ButtonLocale;
-import su.nightexpress.nightcore.locale.entry.DialogElementLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
-import su.nightexpress.nightcore.util.Enums;
-import su.nightexpress.nightcore.util.ItemUtil;
+import com.notauraaa.folianightcore.bridge.common.FoliaNbtHolder;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.button.WrappedActionButton;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.input.WrappedDialogInput;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.ButtonLocale;
+import com.notauraaa.folianightcore.locale.entry.DialogElementLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.util.Enums;
+import com.notauraaa.folianightcore.util.ItemUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class RewardCreationDialog extends Dialog<RewardCreationDialog.Data> {
 
@@ -93,7 +93,7 @@ public class RewardCreationDialog extends Dialog<RewardCreationDialog.Data> {
                 case COMMAND -> BUTTON_COMMAND_TYPE;
             }).replace(str -> str.formatted(ItemUtil.getNameSerialized(itemStack)));
 
-            buttons.add(DialogButtons.action(locale).action(DialogActions.customClick(DialogActions.OK, NightNbtHolder.builder().put(JSON_TYPE, type.name()).build())).build());
+            buttons.add(DialogButtons.action(locale).action(DialogActions.customClick(DialogActions.OK, FoliaNbtHolder.builder().put(JSON_TYPE, type.name()).build())).build());
         }
 
         if (isCustom) {

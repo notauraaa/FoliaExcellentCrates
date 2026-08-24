@@ -14,10 +14,10 @@ import su.nightexpress.excellentcrates.crate.reward.impl.CommandReward;
 import su.nightexpress.excellentcrates.crate.reward.impl.ItemReward;
 import su.nightexpress.excellentcrates.util.ItemHelper;
 import su.nightexpress.excellentcrates.util.CrateUtils;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.ItemUtil;
-import su.nightexpress.nightcore.util.Lists;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.util.ItemUtil;
+import com.notauraaa.folianightcore.util.Lists;
 
 public class RewardFactory {
 

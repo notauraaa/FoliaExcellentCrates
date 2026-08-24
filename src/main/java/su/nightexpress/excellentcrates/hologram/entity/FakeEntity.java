@@ -2,7 +2,7 @@ package su.nightexpress.excellentcrates.hologram.entity;
 
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.util.EntityUtil;
+import com.notauraaa.folianightcore.util.EntityUtil;
 
 public class FakeEntity {
 

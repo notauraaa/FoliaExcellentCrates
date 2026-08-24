@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
-import su.nightexpress.nightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.FileConfig;
 
 public interface OpeningProvider {
 

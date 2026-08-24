@@ -15,14 +15,14 @@ import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.OpenOptions;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.ConfigBased;
-import su.nightexpress.nightcore.ui.menu.data.MenuLoader;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
+import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class OpeningCostMenu extends LinkedMenu<CratesPlugin, CrateSource> implements ConfigBased {
 
@@ -66,7 +66,7 @@ public class OpeningCostMenu extends LinkedMenu<CratesPlugin, CrateSource> imple
             int slot = costSlots[index];
             int maxOpenings = cost.countMaxOpenings(player);
 
-            viewer.addItem(NightItem.fromItemStack(cost.getIconStack())
+            viewer.addItem(FoliaItem.fromItemStack(cost.getIconStack())
                 .localized(maxOpenings > 0 ? Lang.UI_COSTS_OPTION_AVAILABLE : Lang.UI_COSTS_OPTION_UNAVAILABLE)
                 .replacement(replacer -> replacer
                     .replace(crate.replacePlaceholders())
@@ -119,14 +119,14 @@ public class OpeningCostMenu extends LinkedMenu<CratesPlugin, CrateSource> imple
             this.slotsByCostsAmount.put(amount, skillSlots);
         }
 
-        loader.addDefaultItem(NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(0,1,2,3,4,5,6,7,8,9,17,18,19,20,21,22,23,24,25,26)
         );
 
-        loader.addDefaultItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)

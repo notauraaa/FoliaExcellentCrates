@@ -7,16 +7,16 @@ import su.nightexpress.excellentcrates.crate.cost.entry.impl.KeyCostEntry;
 import su.nightexpress.excellentcrates.crate.cost.type.AbstractCostType;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.key.KeyManager;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class KeyCostType extends AbstractCostType implements LangContainer {
 

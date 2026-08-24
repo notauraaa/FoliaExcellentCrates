@@ -7,11 +7,11 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.config.Config;
 import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
-import su.nightexpress.nightcore.util.*;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.night.NightMessage;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
-import su.nightexpress.nightcore.util.wrapper.UniParticle;
+import com.notauraaa.folianightcore.util.*;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.night.FoliaMessage;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.util.wrapper.UniParticle;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -48,12 +48,12 @@ public class CrateUtils {
 
     @NotNull
     public static ItemStack getQuestionStack() {
-        return NightItem.asCustomHead("2705fd94a0c431927fb4e639b0fcfb49717e412285a02b439e0112da22b2e2ec").hideAllComponents().getItemStack();
+        return FoliaItem.asCustomHead("2705fd94a0c431927fb4e639b0fcfb49717e412285a02b439e0112da22b2e2ec").hideAllComponents().getItemStack();
     }
 
     @NotNull
-    public static NightItem getDefaultLinkTool() {
-        return NightItem.fromType(Material.BLAZE_ROD)
+    public static FoliaItem getDefaultLinkTool() {
+        return FoliaItem.fromType(Material.BLAZE_ROD)
             .hideAllComponents()
             .setDisplayName(TagWrappers.GOLD.and(TagWrappers.BOLD).wrap("Link Tool"))
             .setLore(Lists.newList(
@@ -63,7 +63,7 @@ public class CrateUtils {
     }
     @NotNull
     public static ItemStack getDefaultItem(@NotNull Crate crate) {
-        return NightItem.fromType(Material.CHEST)
+        return FoliaItem.fromType(Material.CHEST)
             .setDisplayName(crate.getName())
             .setLore(crate.getDescription())
             .hideAllComponents()
@@ -82,7 +82,7 @@ public class CrateUtils {
     @NotNull
     public static String generateRewardID(@NotNull Crate crate, @NotNull ItemStack itemStack) {
         String itemName = Optional.ofNullable(ItemUtil.getDisplayNameSerialized(itemStack))
-            .map(NightMessage::stripTags)
+            .map(FoliaMessage::stripTags)
             .orElse(BukkitThing.getValue(itemStack.getType()));
 
         String name = Strings.varStyle(itemName).orElse(UUID.randomUUID().toString());

@@ -2,11 +2,11 @@ package su.nightexpress.excellentcrates.opening.inventory.spinner;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import su.nightexpress.nightcore.bridge.wrap.NightSound;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaSound;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.NumberUtil;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public class SpinnerData implements Writeable {
     private final int[]          slots;
     private final int            spinDelay;
     private final List<SpinStep> spinSteps;
-    private final NightSound     sound;
+    private final FoliaSound     sound;
 
     public SpinnerData(@NotNull String spinnerId,
                        @NotNull SpinMode mode,
                        int[] slots,
                        int spinDelay,
                        @NotNull List<SpinStep> spinSteps,
-                       @Nullable NightSound sound) {
+                       @Nullable FoliaSound sound) {
         this.spinnerId = spinnerId.toLowerCase();
         this.mode = mode;
         this.slots = slots;
@@ -66,7 +66,7 @@ public class SpinnerData implements Writeable {
         int spinDelay = config.getInt(path + ".SpinDelay");
         List<SpinStep> spinSteps = Lists.modify(config.getStringList(path + ".Spins"), SpinStep::deserialize);
 
-        NightSound sound = config.readSound(path + ".Sound");
+        FoliaSound sound = config.readSound(path + ".Sound");
 
         return new SpinnerData(spinnerId, mode, slots, spinDelay, spinSteps, sound);
     }
@@ -105,7 +105,7 @@ public class SpinnerData implements Writeable {
     }
 
     @Nullable
-    public NightSound getSound() {
+    public FoliaSound getSound() {
         return this.sound;
     }
 }

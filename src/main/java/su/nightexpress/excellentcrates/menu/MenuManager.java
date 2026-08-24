@@ -6,8 +6,8 @@ import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.excellentcrates.config.Config;
 import su.nightexpress.excellentcrates.menu.impl.CratesMenu;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.manager.AbstractManager;
 
 import java.io.File;
 import java.util.*;

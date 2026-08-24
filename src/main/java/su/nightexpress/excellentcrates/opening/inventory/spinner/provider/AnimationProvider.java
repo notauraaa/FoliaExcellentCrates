@@ -6,10 +6,10 @@ import su.nightexpress.excellentcrates.opening.inventory.InventoryOpening;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerProvider;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerData;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.impl.AnimationSpinner;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.random.WeightedItem;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.random.WeightedItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,18 +17,18 @@ import java.util.Map;
 
 public class AnimationProvider implements SpinnerProvider, Writeable {
 
-    private final Map<String, WeightedItem<NightItem>> itemMap;
+    private final Map<String, WeightedItem<FoliaItem>> itemMap;
 
-    public AnimationProvider(@NotNull Map<String, WeightedItem<NightItem>> itemMap) {
+    public AnimationProvider(@NotNull Map<String, WeightedItem<FoliaItem>> itemMap) {
         this.itemMap = new HashMap<>(itemMap);
     }
 
     @NotNull
     public static AnimationProvider read(@NotNull FileConfig config, @NotNull String path) {
-        Map<String, WeightedItem<NightItem>> itemsMap = new HashMap<>();
+        Map<String, WeightedItem<FoliaItem>> itemsMap = new HashMap<>();
         config.getSection(path + ".Items").forEach(sId -> {
             double weight = config.getDouble(path + ".Items." + sId + ".Chance", 100D);
-            NightItem item = config.getCosmeticItem(path + ".Items." + sId);
+            FoliaItem item = config.getCosmeticItem(path + ".Items." + sId);
             itemsMap.put(sId.toLowerCase(), new WeightedItem<>(item, weight));
         });
 
@@ -52,7 +52,7 @@ public class AnimationProvider implements SpinnerProvider, Writeable {
     }
 
     @NotNull
-    public Map<String, WeightedItem<NightItem>> getItemMap() {
+    public Map<String, WeightedItem<FoliaItem>> getItemMap() {
         return this.itemMap;
     }
 }

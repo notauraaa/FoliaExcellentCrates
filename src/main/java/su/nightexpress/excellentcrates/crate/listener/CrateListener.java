@@ -24,9 +24,9 @@ import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.CrateManager;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.util.InteractType;
-import su.nightexpress.nightcore.manager.AbstractListener;
-import su.nightexpress.nightcore.util.time.TimeFormatType;
-import su.nightexpress.nightcore.util.time.TimeFormats;
+import com.notauraaa.folianightcore.manager.AbstractListener;
+import com.notauraaa.folianightcore.util.time.TimeFormatType;
+import com.notauraaa.folianightcore.util.time.TimeFormats;
 
 import java.util.HashSet;
 import java.util.Set;

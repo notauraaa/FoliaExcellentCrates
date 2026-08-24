@@ -7,7 +7,7 @@ import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.effect.CrateEffect;
 import su.nightexpress.excellentcrates.crate.effect.EffectId;
 import su.nightexpress.excellentcrates.util.pos.Point3D;
-import su.nightexpress.nightcore.util.wrapper.UniParticle;
+import com.notauraaa.folianightcore.util.wrapper.UniParticle;
 
 public class HeartEffect extends CrateEffect {
 

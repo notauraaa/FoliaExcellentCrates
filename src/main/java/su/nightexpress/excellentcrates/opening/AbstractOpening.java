@@ -14,8 +14,8 @@ import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.data.crate.GlobalCrateData;
 import su.nightexpress.excellentcrates.data.crate.UserCrateData;
 import su.nightexpress.excellentcrates.user.CrateUser;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.ArrayList;
 import java.util.Collection;

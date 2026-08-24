@@ -4,10 +4,10 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.data.crate.GlobalCrateData;
 import su.nightexpress.excellentcrates.data.reward.RewardData;
 import su.nightexpress.excellentcrates.api.crate.Reward;
-import su.nightexpress.nightcore.db.sql.query.impl.DeleteQuery;
-import su.nightexpress.nightcore.db.sql.query.impl.InsertQuery;
-import su.nightexpress.nightcore.db.sql.query.impl.UpdateQuery;
-import su.nightexpress.nightcore.db.sql.util.WhereOperator;
+import com.notauraaa.folianightcore.db.sql.query.impl.DeleteQuery;
+import com.notauraaa.folianightcore.db.sql.query.impl.InsertQuery;
+import com.notauraaa.folianightcore.db.sql.query.impl.UpdateQuery;
+import com.notauraaa.folianightcore.db.sql.util.WhereOperator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

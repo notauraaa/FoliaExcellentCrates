@@ -19,10 +19,10 @@ import su.nightexpress.excellentcrates.hooks.HookId;
 import su.nightexpress.excellentcrates.util.CrateUtils;
 import su.nightexpress.excellentcrates.util.FoliaScheduler;
 import su.nightexpress.excellentcrates.util.pos.WorldPos;
-import su.nightexpress.nightcore.manager.AbstractManager;
-import su.nightexpress.nightcore.util.LocationUtil;
-import su.nightexpress.nightcore.util.Plugins;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.util.LocationUtil;
+import com.notauraaa.folianightcore.util.Plugins;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.*;
 

@@ -2,9 +2,9 @@ package su.nightexpress.excellentcrates.hologram;
 
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.Placeholders;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
-import su.nightexpress.nightcore.util.Lists;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
+import com.notauraaa.folianightcore.util.Lists;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static su.nightexpress.excellentcrates.Placeholders.CRATE_ID;
 import static su.nightexpress.excellentcrates.Placeholders.CRATE_NAME;
-import static su.nightexpress.nightcore.util.text.tag.Tags.*;
+import static com.notauraaa.folianightcore.util.text.tag.Tags.*;
 
 public class HologramTemplate implements Writeable {
 

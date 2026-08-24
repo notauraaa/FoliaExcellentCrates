@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.config.Config;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
-import su.nightexpress.nightcore.util.text.NightMessage;
+import com.notauraaa.folianightcore.util.text.FoliaMessage;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -36,7 +36,7 @@ public class CrateLogger {
     private void log(@NotNull String text) {
         if (!Config.LOGS_TO_CONSOLE.get() && !Config.LOGS_TO_FILE.get()) return;
 
-        text = NightMessage.stripTags(text);
+        text = FoliaMessage.stripTags(text);
 
         if (Config.LOGS_TO_CONSOLE.get()) {
             this.plugin.info(text);

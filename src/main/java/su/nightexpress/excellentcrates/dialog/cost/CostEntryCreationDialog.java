@@ -7,20 +7,20 @@ import su.nightexpress.excellentcrates.api.cost.CostType;
 import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.dialog.Dialog;
 import su.nightexpress.excellentcrates.registry.CratesRegistries;
-import su.nightexpress.nightcore.bridge.common.NightNbtHolder;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.button.WrappedActionButton;
-import su.nightexpress.nightcore.locale.entry.DialogElementLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.bridge.common.FoliaNbtHolder;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.button.WrappedActionButton;
+import com.notauraaa.folianightcore.locale.entry.DialogElementLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class CostEntryCreationDialog extends Dialog<Cost> {
 
@@ -50,7 +50,7 @@ public class CostEntryCreationDialog extends Dialog<Cost> {
 
         Set<CostType> costTypes = CratesRegistries.getAvailableCostTypes();
         costTypes.stream().sorted(Comparator.comparing(CostType::getId)).forEach(costType -> {
-            NightNbtHolder nbtHolder = NightNbtHolder.builder().put(JSON_ID, costType.getId()).build();
+            FoliaNbtHolder nbtHolder = FoliaNbtHolder.builder().put(JSON_ID, costType.getId()).build();
 
             buttons.add(DialogButtons.action(costType.getName()).action(DialogActions.customClick(ACTION_TYPE, nbtHolder)).build());
         });
@@ -74,7 +74,7 @@ public class CostEntryCreationDialog extends Dialog<Cost> {
                 String id = nbtHolder.getText(JSON_ID).orElse(null);
                 if (id == null) return;
 
-                CostType type = CratesRegistries.COST_TYPE.byKey(id);
+                CostType type = CratesRegistries.COST_TYPE.getByKey(id);
                 if (type == null) return;
 
                 CostEntry entry = type.createEmpty();

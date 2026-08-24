@@ -1,10 +1,10 @@
 package su.nightexpress.excellentcrates.crate.limit;
 
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
-import su.nightexpress.nightcore.util.TimeUtil;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
+import com.notauraaa.folianightcore.util.TimeUtil;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

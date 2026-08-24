@@ -14,7 +14,7 @@ import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.AbstractOpening;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerHolder;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerType;
-import su.nightexpress.nightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;

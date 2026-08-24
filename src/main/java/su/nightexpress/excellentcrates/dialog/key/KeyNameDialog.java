@@ -3,9 +3,9 @@ package su.nightexpress.excellentcrates.dialog.key;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.dialog.generic.GenericNameDialog;
 import su.nightexpress.excellentcrates.key.CrateKey;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
 
 public class KeyNameDialog extends GenericNameDialog<CrateKey> {
 

@@ -12,21 +12,21 @@ import su.nightexpress.excellentcrates.crate.CrateManager;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.CrateDialogs;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.GREEN;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.GREEN;
 
 public class CrateListMenu extends LinkedMenu<CratesPlugin, CrateManager> implements Filled<Crate>, LangContainer {
 
@@ -74,7 +74,7 @@ public class CrateListMenu extends LinkedMenu<CratesPlugin, CrateManager> implem
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(this.getLink(viewer).getCrates().stream().sorted(Comparator.comparing(Crate::getId)).toList());
         autoFill.setItemCreator(crate -> {
-            return NightItem.fromItemStack(crate.getRawItemStack())
+            return FoliaItem.fromItemStack(crate.getRawItemStack())
                 .localized(LOCALE_CRATE)
                 .replacement(replacer -> replacer
                     .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_OVERVIEW, !crate.hasProblems()))

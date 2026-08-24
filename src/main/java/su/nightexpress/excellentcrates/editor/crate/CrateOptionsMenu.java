@@ -18,24 +18,24 @@ import su.nightexpress.excellentcrates.crate.CrateDialogs;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.dialog.crate.CrateItemDialog;
 import su.nightexpress.excellentcrates.util.CrateUtils;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.click.ClickResult;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.StringUtil;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
-import su.nightexpress.nightcore.util.time.TimeFormats;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.StringUtil;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
+import com.notauraaa.folianightcore.util.time.TimeFormats;
 
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements LangContainer {
 
@@ -182,7 +182,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
         Crate crate = this.getLink(player);
         Runnable flush = () -> this.flush(player);
 
-        viewer.addItem(NightItem.fromType(Material.NAME_TAG)
+        viewer.addItem(FoliaItem.fromType(Material.NAME_TAG)
             .localized(LOCALE_NAME)
             .replacement(replacer -> replacer.replace(crate.replacePlaceholders()))
             .toMenuItem().setSlots(10).setHandler((viewer1, event) -> {
@@ -190,7 +190,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.WRITABLE_BOOK)
+        viewer.addItem(FoliaItem.fromType(Material.WRITABLE_BOOK)
             .localized(LOCALE_DESCRIPTION)
             .replacement(replacer -> replacer.replace(crate.replacePlaceholders()))
             .toMenuItem().setSlots(11).setHandler((viewer1, event) -> {
@@ -198,7 +198,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromItemStack(crate.getItemStack())
+        viewer.addItem(FoliaItem.fromItemStack(crate.getItemStack())
             .localized(LOCALE_ITEM)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_ITEM, crate.getItem().isValid()))
@@ -223,7 +223,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.PAINTING)
+        viewer.addItem(FoliaItem.fromType(Material.PAINTING)
             .localized(crate.isPreviewEnabled() ? LOCALE_PREVIEW_SET : LOCALE_PREVIEW_UNSET)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_CRATE_PREVIEW, crate.isPreviewValid()))
@@ -234,7 +234,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.GLOW_ITEM_FRAME)
+        viewer.addItem(FoliaItem.fromType(Material.GLOW_ITEM_FRAME)
             .localized(crate.isOpeningEnabled() ? LOCALE_OPENING_SET : LOCALE_OPENING_UNSET)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_CRATE_OPENING, crate.isOpeningValid()))
@@ -245,7 +245,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.BEACON)
+        viewer.addItem(FoliaItem.fromType(Material.BEACON)
             .localized(LOCALE_LINKED_BLOCKS)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_YES_NO.get(!crate.getBlockPositions().isEmpty())))
             .toMenuItem().setSlots(15).setHandler((viewer1, event) -> {
@@ -262,7 +262,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.SLIME_BLOCK)
+        viewer.addItem(FoliaItem.fromType(Material.SLIME_BLOCK)
             .localized(LOCALE_BLOCK_PUSHBACK)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(crate.isPushbackEnabled())))
             .toMenuItem().setSlots(16).setHandler((viewer1, event) -> {
@@ -272,14 +272,14 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.TRIAL_KEY)
+        viewer.addItem(FoliaItem.fromType(Material.TRIAL_KEY)
             .localized(LOCALE_COST_OPTIONS)
             .toMenuItem().setSlots(28).setHandler((viewer1, event) -> {
                 this.runNextTick(() -> plugin.getEditorManager().openCosts(viewer.getPlayer(), crate));
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(crate.isPermissionRequired() ? Material.REDSTONE : Material.GUNPOWDER)
+        viewer.addItem(FoliaItem.fromType(crate.isPermissionRequired() ? Material.REDSTONE : Material.GUNPOWDER)
             .localized(LOCALE_PERMISSION_REQUIREMENT)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(crate.isPermissionRequired()))
@@ -292,7 +292,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.CLOCK)
+        viewer.addItem(FoliaItem.fromType(Material.CLOCK)
             .localized(LOCALE_OPEN_LIMITS)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(crate.isOpeningCooldownEnabled()))
@@ -308,7 +308,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.BLAZE_POWDER)
+        viewer.addItem(FoliaItem.fromType(Material.BLAZE_POWDER)
             .localized(LOCALE_EFFECT)
             .replacement(replacer -> replacer
                 .replace(GENERIC_TYPE, () -> StringUtil.capitalizeUnderscored(crate.getEffectType()))
@@ -319,7 +319,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
         );
 
         if (this.plugin.hasHolograms()) {
-            viewer.addItem(NightItem.fromType(Material.ARMOR_STAND)
+            viewer.addItem(FoliaItem.fromType(Material.ARMOR_STAND)
                 .localized(LOCALE_HOLOGRAM)
                 .replacement(replacer -> replacer
                     .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_CRATE_HOLOGRAM, crate.isHologramTemplateValid()))
@@ -332,7 +332,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             );
         }
 
-        viewer.addItem(NightItem.fromType(Material.VAULT)
+        viewer.addItem(FoliaItem.fromType(Material.VAULT)
             .localized(LOCALE_REWARDS)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_OVERVIEW, crate.getRewards().stream().noneMatch(Reward::hasProblems)))
@@ -344,7 +344,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
         );
 
         if (Config.isMilestonesEnabled()) {
-            viewer.addItem(NightItem.fromType(Material.CAMPFIRE)
+            viewer.addItem(FoliaItem.fromType(Material.CAMPFIRE)
                 .localized(LOCALE_MILESTONES)
                 .replacement(replacer -> replacer
                     .replace(GENERIC_AMOUNT, () -> String.valueOf(crate.countMilestones()))
@@ -356,7 +356,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             );
         }
 
-        viewer.addItem(NightItem.fromType(Material.BARRIER)
+        viewer.addItem(FoliaItem.fromType(Material.BARRIER)
             .localized(LOCALE_DELETE)
             .toMenuItem().setSlots(53).setHandler((viewer1, event) -> {
                 if (event.getClick() != ClickType.DROP) return;
@@ -366,7 +366,7 @@ public class CrateOptionsMenu extends LinkedMenu<CratesPlugin, Crate> implements
             }).build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.COMMAND_BLOCK)
+        viewer.addItem(FoliaItem.fromType(Material.COMMAND_BLOCK)
             .localized(LOCALE_POST_OPEN_COMMANDS)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_COMMANDS, crate.getPostOpenCommands().stream().allMatch(CrateUtils::isValidCommand)))

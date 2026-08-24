@@ -12,8 +12,8 @@ import su.nightexpress.excellentcrates.opening.inventory.InventoryOpening;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.AbstractSpinner;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinMode;
 import su.nightexpress.excellentcrates.opening.inventory.spinner.SpinnerData;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.random.Rnd;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.random.Rnd;
 
 import java.util.HashMap;
 import java.util.List;

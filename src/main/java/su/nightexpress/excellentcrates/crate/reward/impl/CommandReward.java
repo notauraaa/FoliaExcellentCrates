@@ -12,10 +12,10 @@ import su.nightexpress.excellentcrates.crate.impl.Rarity;
 import su.nightexpress.excellentcrates.crate.reward.AbstractReward;
 import su.nightexpress.excellentcrates.util.CrateUtils;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.*;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
-import su.nightexpress.nightcore.util.problem.ProblemReporter;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.util.*;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.util.problem.ProblemReporter;
 
 import java.util.ArrayList;
 import java.util.List;

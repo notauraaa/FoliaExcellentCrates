@@ -60,23 +60,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.papermc</groupId>
+            <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.papermc</groupId>
-            <artifactId>folia-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>1.21.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>su.nightexpress.nightcore</groupId>
+            <groupId>com.notauraaa.folianightcore</groupId>
             <artifactId>main</artifactId>
-            <version>2.10.0</version>
+            <version>2.16.4</version>
             <scope>provided</scope>
         </dependency>
 

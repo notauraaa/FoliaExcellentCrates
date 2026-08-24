@@ -3,8 +3,8 @@ package su.nightexpress.excellentcrates.crate.impl;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.Placeholders;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.StringUtil;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.util.StringUtil;
 
 import java.util.Collection;
 import java.util.function.UnaryOperator;

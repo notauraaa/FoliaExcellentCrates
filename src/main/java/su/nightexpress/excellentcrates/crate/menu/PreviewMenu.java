@@ -11,27 +11,27 @@ import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.util.InteractType;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.ConfigBased;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.data.MenuLoader;
-import su.nightexpress.nightcore.ui.menu.item.ItemHandler;
-import su.nightexpress.nightcore.ui.menu.item.ItemOptions;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
+import com.notauraaa.folianightcore.ui.menu.item.ItemHandler;
+import com.notauraaa.folianightcore.ui.menu.item.ItemOptions;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implements Filled<Reward>, ConfigBased {
 
@@ -94,7 +94,7 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
                 restrictions.addAll(this.noPermissionLore);
             }
 
-            return NightItem.fromItemStack(reward.getPreviewItem())
+            return FoliaItem.fromItemStack(reward.getPreviewItem())
                 .ignoreNameAndLore()
                 .setDisplayName(this.rewardName)
                 .setLore(this.rewardLore)
@@ -165,13 +165,13 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
             return source.hasItem() || source.hasBlock();
         }).build()));
 
-        loader.addDefaultItem(new NightItem(Material.BLACK_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
+        loader.addDefaultItem(new FoliaItem(Material.BLACK_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
             .setSlots(1,2,3,5,6,7,9,18,27,17,26,35,37,38,39,40,41,42,43));
 
-        loader.addDefaultItem(new NightItem(Material.GRAY_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
+        loader.addDefaultItem(new FoliaItem(Material.GRAY_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
             .setSlots(0,4,8,36,44));
 
-        loader.addDefaultItem(NightItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0")
+        loader.addDefaultItem(FoliaItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0")
             .setDisplayName(GOLD.wrap(BOLD.wrap("Milestones")))
             .toMenuItem()
             .setPriority(10)

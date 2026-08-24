@@ -15,9 +15,9 @@ import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.Animat
 import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.RewardProvider;
 import su.nightexpress.excellentcrates.opening.selectable.SelectableProvider;
 import su.nightexpress.excellentcrates.opening.world.provider.SimpleRollProvider;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.random.Rnd;
-import su.nightexpress.nightcore.util.random.WeightedItem;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.random.Rnd;
+import com.notauraaa.folianightcore.util.random.WeightedItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ import java.util.function.Consumer;
 
 import static su.nightexpress.excellentcrates.Placeholders.CRATE_NAME;
 import static su.nightexpress.excellentcrates.Placeholders.DEFAULT;
-import static su.nightexpress.nightcore.util.text.tag.Tags.*;
+import static com.notauraaa.folianightcore.util.text.tag.Tags.*;
 
 public class OpeningUtils {
 
@@ -90,13 +90,13 @@ public class OpeningUtils {
             provider.setInvType(MenuType.GENERIC_9X3);
             provider.setWinSlots(new int[]{13});
 
-            provider.getDefaultItems().put("arrow_up", NightItem.asCustomHead("77334cddfab45d75ad28e1a47bf8cf5017d2f0982f6737da22d4972952510661")
+            provider.getDefaultItems().put("arrow_up", FoliaItem.asCustomHead("77334cddfab45d75ad28e1a47bf8cf5017d2f0982f6737da22d4972952510661")
                 .setDisplayName(CYAN.wrap(BOLD.wrap("↑ Your Reward ↑")))
                 .toMenuItem()
                 .setSlots(22)
                 .build());
 
-            provider.getDefaultItems().put("arrow_down", NightItem.asCustomHead("e7742034f59db890c8004156b727c77ca695c4399d8e0da5ce9227cf836bb8e2")
+            provider.getDefaultItems().put("arrow_down", FoliaItem.asCustomHead("e7742034f59db890c8004156b727c77ca695c4399d8e0da5ce9227cf836bb8e2")
                 .setDisplayName(CYAN.wrap(BOLD.wrap("↓ Your Reward ↓")))
                 .toMenuItem()
                 .setSlots(4)
@@ -182,18 +182,18 @@ public class OpeningUtils {
             provider.setInvType(MenuType.GENERIC_9X5);
             provider.setWinSlots(new int[]{20});
 
-            provider.getDefaultItems().put("background", NightItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+            provider.getDefaultItems().put("background", FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
                 .toMenuItem()
                 .setSlots(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 12, 13, 14, 22, 23, 30, 31, 32)
                 .build());
 
-            provider.getDefaultItems().put("arrow_right", NightItem.asCustomHead("a6af217aeddf0f40064969ebb2042f7aeafbc7d0f175a27624133a3befd10281")
+            provider.getDefaultItems().put("arrow_right", FoliaItem.asCustomHead("a6af217aeddf0f40064969ebb2042f7aeafbc7d0f175a27624133a3befd10281")
                 .setDisplayName(LIGHT_RED.wrap(BOLD.wrap("YOUR PRIZE →")))
                 .toMenuItem()
                 .setSlots(19)
                 .build());
 
-            provider.getDefaultItems().put("arrow_left", NightItem.asCustomHead("1c5a8aa8a4c03600a2b5a4eb6beb51d590260b095ee1cdaa976b09bdfe5661c6")
+            provider.getDefaultItems().put("arrow_left", FoliaItem.asCustomHead("1c5a8aa8a4c03600a2b5a4eb6beb51d590260b095ee1cdaa976b09bdfe5661c6")
                 .setDisplayName(LIGHT_RED.wrap(BOLD.wrap("← YOUR PRIZE")))
                 .toMenuItem()
                 .setSlots(21)
@@ -230,13 +230,13 @@ public class OpeningUtils {
             String fillWhiteId = "fill_white";
             Sound pistonSound = Sound.BLOCK_PISTON_EXTEND;
 
-            Map<String, WeightedItem<NightItem>> blackItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> blackItems = new HashMap<>();
             blackItems.put("pane", getWeighted(Material.BLACK_STAINED_GLASS_PANE, 100D));
 
-            Map<String, WeightedItem<NightItem>> grayItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> grayItems = new HashMap<>();
             grayItems.put("pane", getWeighted(Material.GRAY_STAINED_GLASS_PANE, 100D));
 
-            Map<String, WeightedItem<NightItem>> whiteItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> whiteItems = new HashMap<>();
             whiteItems.put("pane", getWeighted(Material.WHITE_STAINED_GLASS_PANE, 100D));
 
             provider.addSpinner(SpinnerBuilder.animationBuilder().name("black_1").mode(SpinMode.SYNCRHONIZED).spinnerId(fillBlackId)
@@ -336,13 +336,13 @@ public class OpeningUtils {
             String animThunder = "thunder";
             String animClear = "clear";
 
-            Map<String, WeightedItem<NightItem>> cloudItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> cloudItems = new HashMap<>();
             cloudItems.put("cloud", getWeighted(Material.WHITE_STAINED_GLASS_PANE, 100D));
 
-            Map<String, WeightedItem<NightItem>> thunderItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> thunderItems = new HashMap<>();
             thunderItems.put("thunder", getWeighted(Material.YELLOW_STAINED_GLASS_PANE, 100D));
 
-            Map<String, WeightedItem<NightItem>> clearItems = new HashMap<>();
+            Map<String, WeightedItem<FoliaItem>> clearItems = new HashMap<>();
             clearItems.put("clear", getWeighted(Material.AIR, 100D));
 
             // Clouds
@@ -430,8 +430,8 @@ public class OpeningUtils {
     }
 
     @NotNull
-    private static Map<String, WeightedItem<NightItem>> getRainbowPanes() {
-        Map<String, WeightedItem<NightItem>> rainbowItems = new HashMap<>();
+    private static Map<String, WeightedItem<FoliaItem>> getRainbowPanes() {
+        Map<String, WeightedItem<FoliaItem>> rainbowItems = new HashMap<>();
         rainbowItems.put("s1", getWeighted(Material.WHITE_STAINED_GLASS_PANE, 1D));
         rainbowItems.put("s2", getWeighted(Material.LIGHT_GRAY_STAINED_GLASS_PANE, 1D));
         rainbowItems.put("s3", getWeighted(Material.GRAY_STAINED_GLASS_PANE, 1D));
@@ -452,7 +452,7 @@ public class OpeningUtils {
     }
 
     @NotNull
-    private static WeightedItem<NightItem> getWeighted(@NotNull Material material, double weight) {
-        return new WeightedItem<>(NightItem.fromType(material), weight);
+    private static WeightedItem<FoliaItem> getWeighted(@NotNull Material material, double weight) {
+        return new WeightedItem<>(FoliaItem.fromType(material), weight);
     }
 }

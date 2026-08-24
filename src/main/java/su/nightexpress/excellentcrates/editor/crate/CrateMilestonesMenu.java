@@ -11,23 +11,23 @@ import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.Milestone;
 import su.nightexpress.excellentcrates.util.CrateUtils;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialog;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialog;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.SOFT_RED;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.SOFT_RED;
 
 public class CrateMilestonesMenu extends LinkedMenu<CratesPlugin, Crate> implements Filled<Milestone>, LangContainer {
 
@@ -74,7 +74,7 @@ public class CrateMilestonesMenu extends LinkedMenu<CratesPlugin, Crate> impleme
         autoFill.setItems(this.getLink(viewer).getMilestones().stream().sorted(Comparator.comparing(Milestone::getOpenings)).toList());
         autoFill.setItemCreator(milestone -> {
             Reward reward = milestone.getReward();
-            return NightItem.fromItemStack(reward == null ? CrateUtils.getQuestionStack() : reward.getPreviewItem())
+            return FoliaItem.fromItemStack(reward == null ? CrateUtils.getQuestionStack() : reward.getPreviewItem())
                 .localized(MILESTONE_OBJECT)
                 .hideAllComponents()
                 .replacement(replacer -> replacer

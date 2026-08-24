@@ -8,14 +8,14 @@ import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.manager.ConfigBacked;
-import su.nightexpress.nightcore.util.ItemUtil;
-import su.nightexpress.nightcore.util.PDCUtil;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.problem.ProblemCollector;
-import su.nightexpress.nightcore.util.problem.ProblemReporter;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.manager.ConfigBacked;
+import com.notauraaa.folianightcore.util.ItemUtil;
+import com.notauraaa.folianightcore.util.PDCUtil;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.problem.ProblemCollector;
+import com.notauraaa.folianightcore.util.problem.ProblemReporter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,7 +52,7 @@ public class CrateKey implements ConfigBacked {
         this.setVirtual(config.getBoolean("Virtual"));
 
         if (config.contains("Item")) {
-            NightItem item = config.getCosmeticItem("Item");
+            FoliaItem item = config.getCosmeticItem("Item");
             AdaptedItem adaptedItem = ItemHelper.vanilla(item.getItemStack());
 
             config.remove("Item");

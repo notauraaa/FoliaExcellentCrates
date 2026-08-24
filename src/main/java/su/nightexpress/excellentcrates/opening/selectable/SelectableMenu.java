@@ -9,22 +9,22 @@ import org.bukkit.inventory.MenuType;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.api.crate.Reward;
-import su.nightexpress.nightcore.bridge.wrap.NightSound;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.ConfigBased;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.data.MenuLoader;
-import su.nightexpress.nightcore.ui.menu.item.ItemHandler;
-import su.nightexpress.nightcore.ui.menu.item.ItemOptions;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
-import su.nightexpress.nightcore.util.sound.VanillaSound;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaSound;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
+import com.notauraaa.folianightcore.ui.menu.item.ItemHandler;
+import com.notauraaa.folianightcore.ui.menu.item.ItemOptions;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.util.sound.VanillaSound;
 
 import java.util.Comparator;
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> implements ConfigBased, Filled<Reward> {
 
@@ -42,12 +42,12 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
 
     private String rewardEntry;
 
-    private NightItem  selectedIcon;
+    private FoliaItem  selectedIcon;
 
-    private NightSound selectSound;
-    private NightSound unselectSound;
-    private NightSound limitSound;
-    private NightSound confirmSound;
+    private FoliaSound selectSound;
+    private FoliaSound unselectSound;
+    private FoliaSound limitSound;
+    private FoliaSound confirmSound;
 
     public SelectableMenu(@NotNull CratesPlugin plugin) {
         super(plugin, MenuType.GENERIC_9X6, BLACK.wrap("Select " + GENERIC_AMOUNT + " reward(s)!"));
@@ -64,7 +64,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
             .setSlots(this.rewardSlots)
             .setItems(opening.getCrateRewards())
             .setItemCreator(reward -> {
-                NightItem item = opening.isSelectedReward(reward) ? this.selectedIcon.copy() : NightItem.fromItemStack(reward.getPreviewItem())
+                FoliaItem item = opening.isSelectedReward(reward) ? this.selectedIcon.copy() : FoliaItem.fromItemStack(reward.getPreviewItem())
                     .setDisplayName(this.rewardName)
                     .setLore(this.rewardLore);
 
@@ -112,7 +112,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
     }
 
     @Override
-    protected void onItemPrepare(@NotNull MenuViewer viewer, @NotNull MenuItem menuItem, @NotNull NightItem item) {
+    protected void onItemPrepare(@NotNull MenuViewer viewer, @NotNull MenuItem menuItem, @NotNull FoliaItem item) {
         super.onItemPrepare(viewer, menuItem, item);
 
         if (!viewer.hasItem(menuItem)) {
@@ -171,7 +171,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         ).read(config);
 
         this.selectedIcon = ConfigValue.create("Selection.Icon",
-            NightItem.fromType(Material.LIME_STAINED_GLASS_PANE)
+            FoliaItem.fromType(Material.LIME_STAINED_GLASS_PANE)
                 .setDisplayName(GREEN.wrap(BOLD.wrap("Selected: ")) + WHITE.wrap(REWARD_NAME))
                 .setLore(Lists.newList(
                     GRAY.wrap("You'll get this reward."),
@@ -186,7 +186,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         this.limitSound = ConfigValue.create("Selection.Sound-Limit", VanillaSound.of(Sound.ENTITY_VILLAGER_NO)).read(config);
         this.confirmSound = ConfigValue.create("Selection.Sound-Confirm", VanillaSound.of(Sound.BLOCK_VAULT_OPEN_SHUTTER)).read(config);
 
-        loader.addDefaultItem(new NightItem(Material.BLACK_STAINED_GLASS_PANE)
+        loader.addDefaultItem(new FoliaItem(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(45, 54).toArray())
@@ -195,7 +195,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         loader.addDefaultItem(MenuItem.buildNextPage(this, 53).setPriority(10));
         loader.addDefaultItem(MenuItem.buildPreviousPage(this, 45).setPriority(10));
 
-        loader.addDefaultItem(NightItem.fromType(Material.LIME_DYE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.LIME_DYE)
             .setDisplayName(GREEN.wrap(BOLD.wrap("Confirm")))
             .setLore(Lists.newList(
                 GRAY.wrap("You'll get the following rewards:"),
@@ -214,7 +214,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
             ))
         );
 
-        loader.addDefaultItem(NightItem.fromType(Material.GRAY_DYE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_DYE)
             .setDisplayName(WHITE.wrap(BOLD.wrap("Confirm")) + " " + GRAY.wrap("(Not Enough)"))
             .setLore(Lists.newList(
                 GRAY.wrap("You selected " + WHITE.wrap(GENERIC_CURRENT) + "/" + WHITE.wrap(GENERIC_AMOUNT) + " rewards."),

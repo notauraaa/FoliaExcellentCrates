@@ -8,7 +8,7 @@ import su.nightexpress.excellentcrates.api.opening.OpeningProvider;
 import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.world.impl.DummyOpening;
-import su.nightexpress.nightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.FileConfig;
 
 public class DummyProvider implements OpeningProvider {
 

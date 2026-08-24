@@ -9,21 +9,21 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.reward.impl.ItemReward;
 import su.nightexpress.excellentcrates.dialog.Dialog;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.input.WrappedDialogInput;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.ButtonLocale;
-import su.nightexpress.nightcore.locale.entry.DialogElementLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
-import su.nightexpress.nightcore.util.BukkitThing;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.input.WrappedDialogInput;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.ButtonLocale;
+import com.notauraaa.folianightcore.locale.entry.DialogElementLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.util.BukkitThing;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class RewardItemDialog extends Dialog<RewardItemDialog.Data> {
 

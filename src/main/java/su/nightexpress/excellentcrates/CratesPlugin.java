@@ -20,17 +20,17 @@ import su.nightexpress.excellentcrates.opening.OpeningManager;
 import su.nightexpress.excellentcrates.opening.ProviderRegistry;
 import su.nightexpress.excellentcrates.registry.CratesRegistries;
 import su.nightexpress.excellentcrates.user.UserManager;
-import su.nightexpress.nightcore.NightPlugin;
-import su.nightexpress.nightcore.commands.command.NightCommand;
-import su.nightexpress.nightcore.config.PluginDetails;
-import su.nightexpress.nightcore.util.Plugins;
+import com.notauraaa.folianightcore.FoliaPlugin;
+import com.notauraaa.folianightcore.commands.command.FoliaCommand;
+import com.notauraaa.folianightcore.config.PluginDetails;
+import com.notauraaa.folianightcore.util.Plugins;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class CratesPlugin extends NightPlugin {
+public class CratesPlugin extends FoliaPlugin {
 
     private final List<CratesAddon> addons = new ArrayList<>();
 
@@ -149,7 +149,7 @@ public class CratesPlugin extends NightPlugin {
     }
 
     private void loadCommands() {
-        this.rootCommand = NightCommand.forPlugin(this, builder -> new BaseCommands(this).load(builder));
+        this.rootCommand = FoliaCommand.forPlugin(this, builder -> new BaseCommands(this).load(builder));
     }
 
     public void registerAddon(@NotNull CratesAddon addon) {

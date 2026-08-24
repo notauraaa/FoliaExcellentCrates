@@ -16,9 +16,9 @@ import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.OpeningUtils;
 import su.nightexpress.excellentcrates.opening.world.WorldOpening;
 import su.nightexpress.excellentcrates.util.pos.WorldPos;
-import su.nightexpress.nightcore.util.EntityUtil;
-import su.nightexpress.nightcore.util.LocationUtil;
-import su.nightexpress.nightcore.util.sound.VanillaSound;
+import com.notauraaa.folianightcore.util.EntityUtil;
+import com.notauraaa.folianightcore.util.LocationUtil;
+import com.notauraaa.folianightcore.util.sound.VanillaSound;
 
 public class SimpleRollOpening extends WorldOpening {
 

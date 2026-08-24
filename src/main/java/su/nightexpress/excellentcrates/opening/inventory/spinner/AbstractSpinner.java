@@ -5,8 +5,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.api.opening.Spinner;
 import su.nightexpress.excellentcrates.opening.inventory.InventoryOpening;
-import su.nightexpress.nightcore.bridge.wrap.NightSound;
-import su.nightexpress.nightcore.util.random.Rnd;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaSound;
+import com.notauraaa.folianightcore.util.random.Rnd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,7 +123,7 @@ public abstract class AbstractSpinner implements Spinner {
 
     protected void onSpin() {
         if (!this.isSilent()) {
-            NightSound sound = this.data.getSound();
+            FoliaSound sound = this.data.getSound();
             if (sound != null) sound.play(this.opening.getPlayer());
         }
 

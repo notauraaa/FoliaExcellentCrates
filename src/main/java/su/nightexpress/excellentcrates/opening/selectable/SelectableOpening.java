@@ -8,7 +8,7 @@ import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.AbstractOpening;
-import su.nightexpress.nightcore.util.random.Rnd;
+import com.notauraaa.folianightcore.util.random.Rnd;
 
 import java.util.HashSet;
 import java.util.List;

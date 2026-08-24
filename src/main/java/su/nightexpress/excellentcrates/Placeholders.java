@@ -7,14 +7,14 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.Milestone;
 import su.nightexpress.excellentcrates.crate.impl.Rarity;
 import su.nightexpress.excellentcrates.key.CrateKey;
-import su.nightexpress.nightcore.bridge.wrap.NightProfile;
-import su.nightexpress.nightcore.util.NumberUtil;
-import su.nightexpress.nightcore.util.placeholder.PlaceholderList;
-import su.nightexpress.nightcore.util.profile.CachedProfile;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaProfile;
+import com.notauraaa.folianightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.placeholder.PlaceholderList;
+import com.notauraaa.folianightcore.util.profile.CachedProfile;
 
 import java.util.stream.Collectors;
 
-public class Placeholders extends su.nightexpress.nightcore.util.Placeholders {
+public class Placeholders extends com.notauraaa.folianightcore.util.Placeholders {
 
     public static final String WIKI_URL          = "https://nightexpressdev.com/excellentcrates/";
     public static final String WIKI_WEIGHTS      = WIKI_URL + "rewards/rarity-weights/";
@@ -72,7 +72,7 @@ public class Placeholders extends su.nightexpress.nightcore.util.Placeholders {
         .add(CRATE_ID, Crate::getId)
         .add(CRATE_NAME, Crate::getName)
         .add(CRATE_DESCRIPTION, crate -> String.join("\n", crate.getDescription()))
-        .add(CRATE_LAST_OPENER, crate -> crate.getLastOpener().map(CachedProfile::query).map(NightProfile::getName).orElse(Lang.OTHER_LAST_OPENER_EMPTY.text()))
+        .add(CRATE_LAST_OPENER, crate -> crate.getLastOpener().map(CachedProfile::query).map(FoliaProfile::getName).orElse(Lang.OTHER_LAST_OPENER_EMPTY.text()))
         .add(CRATE_LAST_REWARD, Crate::getLastRewardName)
         .add(CRATE_OPEN_COST, crate -> crate.getCosts().stream().map(Cost::getName).collect(Collectors.joining(", ")))
     );

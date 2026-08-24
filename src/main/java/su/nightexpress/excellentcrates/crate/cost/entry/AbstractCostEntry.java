@@ -4,9 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.api.cost.CostEntry;
 import su.nightexpress.excellentcrates.api.cost.CostType;
 import su.nightexpress.excellentcrates.registry.CratesRegistries;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.config.Writeable;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.Writeable;
 
 public abstract class AbstractCostEntry<T extends CostType> implements CostEntry, Writeable {
 
@@ -19,7 +19,7 @@ public abstract class AbstractCostEntry<T extends CostType> implements CostEntry
     @NotNull
     public static CostEntry read(@NotNull FileConfig config, @NotNull String path) throws IllegalStateException {
         String typeId = ConfigValue.create(path + ".Type", "null").read(config);
-        CostType type = CratesRegistries.COST_TYPE.byKey(typeId);
+        CostType type = CratesRegistries.COST_TYPE.getByKey(typeId);
         if (type == null) throw new IllegalStateException("Unkwnown cost type: " + typeId);
 
         return type.load(config, path);

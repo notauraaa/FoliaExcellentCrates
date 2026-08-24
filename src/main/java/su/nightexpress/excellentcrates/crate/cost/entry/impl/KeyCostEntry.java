@@ -12,11 +12,11 @@ import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.dialog.cost.KeyCostOptionsDialog;
 import su.nightexpress.excellentcrates.key.CrateKey;
 import su.nightexpress.excellentcrates.key.KeyManager;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.util.LowerCase;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.util.LowerCase;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.Optional;
 
@@ -62,10 +62,10 @@ public class KeyCostEntry extends AbstractCostEntry<KeyCostType> {
 
     @Override
     @NotNull
-    public NightItem getEditorIcon() {
+    public FoliaItem getEditorIcon() {
         Optional<CrateKey> keyOpt = this.key();
 
-        return keyOpt.map(key -> NightItem.fromItemStack(key.getRawItem())).orElse(NightItem.fromType(Material.BARRIER))
+        return keyOpt.map(key -> FoliaItem.fromItemStack(key.getRawItem())).orElse(FoliaItem.fromType(Material.BARRIER))
             .localized(KeyCostType.LOCALE_EDIT_BUTTON)
             .replacement(replacer -> replacer
                 .replace(Placeholders.GENERIC_ID, () -> keyOpt.map(key -> CoreLang.goodEntry(key.getId())).orElse(CoreLang.badEntry(this.keyId)))

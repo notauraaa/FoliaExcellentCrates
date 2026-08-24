@@ -6,7 +6,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.hologram.HologramManager;
-import su.nightexpress.nightcore.manager.AbstractListener;
+import com.notauraaa.folianightcore.manager.AbstractListener;
 
 public class HologramListener extends AbstractListener<CratesPlugin> {
 

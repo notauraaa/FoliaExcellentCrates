@@ -18,24 +18,24 @@ import su.nightexpress.excellentcrates.crate.reward.RewardDialogs;
 import su.nightexpress.excellentcrates.dialog.reward.RewardItemDialog;
 import su.nightexpress.excellentcrates.util.CrateUtils;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.click.ClickResult;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.Players;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.Players;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.GENERIC_STATE;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.DARK_GRAY;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.SOFT_YELLOW;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.DARK_GRAY;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.SOFT_YELLOW;
 
 public class RewardContentMenu extends LinkedMenu<CratesPlugin, ItemReward> implements LangContainer {
 
@@ -109,7 +109,7 @@ public class RewardContentMenu extends LinkedMenu<CratesPlugin, ItemReward> impl
         Player player = viewer.getPlayer();
         ItemReward reward = this.getLink(player);
 
-        viewer.addItem(NightItem.fromType(Material.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE).localized(LOCALE_PLACEHOLDERS)
+        viewer.addItem(FoliaItem.fromType(Material.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE).localized(LOCALE_PLACEHOLDERS)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.isAllowItemPlaceholders())))
             .toMenuItem().setSlots(4).setHandler((viewer1, event) -> {
                 reward.setAllowItemPlaceholders(!reward.isAllowItemPlaceholders());

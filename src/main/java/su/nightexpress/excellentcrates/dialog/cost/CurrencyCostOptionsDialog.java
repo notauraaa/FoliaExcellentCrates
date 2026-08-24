@@ -5,16 +5,16 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.excellentcrates.crate.cost.entry.impl.EcoCostEntry;
 import su.nightexpress.excellentcrates.dialog.Dialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.input.single.WrappedSingleOptionEntry;
-import su.nightexpress.nightcore.integration.currency.EconomyBridge;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.DialogElementLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.input.single.WrappedSingleOptionEntry;
+import com.notauraaa.folianightcore.integration.currency.EconomyBridge;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.DialogElementLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class CurrencyCostOptionsDialog extends Dialog<EcoCostEntry> {
 

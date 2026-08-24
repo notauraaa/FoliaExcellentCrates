@@ -5,15 +5,15 @@ import org.bukkit.Sound;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.api.crate.RewardType;
 import su.nightexpress.excellentcrates.crate.limit.CooldownMode;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.*;
-import su.nightexpress.nightcore.locale.message.MessageData;
-import su.nightexpress.nightcore.util.bridge.RegistryType;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.*;
+import com.notauraaa.folianightcore.locale.message.MessageData;
+import com.notauraaa.folianightcore.util.bridge.RegistryType;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class Lang implements LangContainer {
 

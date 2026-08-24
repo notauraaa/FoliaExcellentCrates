@@ -6,11 +6,11 @@ import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.hologram.HologramTemplate;
 import su.nightexpress.excellentcrates.hooks.HookId;
 import su.nightexpress.excellentcrates.util.CrateUtils;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.util.Enums;
-import su.nightexpress.nightcore.util.Plugins;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
-import su.nightexpress.nightcore.util.time.TimeFormatType;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.util.Enums;
+import com.notauraaa.folianightcore.util.Plugins;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.time.TimeFormatType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +101,7 @@ public class Config {
         "[Default is 300 (5 min)]"
     );
 
-    public static final ConfigValue<NightItem> CRATE_LINK_TOOL = ConfigValue.create("Crate.LinkTool",
+    public static final ConfigValue<FoliaItem> CRATE_LINK_TOOL = ConfigValue.create("Crate.LinkTool",
         CrateUtils.getDefaultLinkTool(),
         "Sets the Link Tool item layout."
     );

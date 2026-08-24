@@ -12,7 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.hologram.entity.FakeEntity;
-import su.nightexpress.nightcore.util.text.night.NightMessage;
+import com.notauraaa.folianightcore.util.text.night.FoliaMessage;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -35,7 +35,7 @@ public class HologramProtocolHandler extends AbstractHologramHandler {
 
     @Override
     public void sendHologramPackets(@NotNull Player player, @NotNull FakeEntity entity, boolean needSpawn, @NotNull String textLine) {
-        Object component = WrappedChatComponent.fromJson(NightMessage.asJson(textLine)).getHandle();
+        Object component = WrappedChatComponent.fromJson(FoliaMessage.asJson(textLine)).getHandle();
 
         PacketContainer dataPacket = this.createMetadataPacket(entity.getId(), metadata -> {
             metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), this.billboard);

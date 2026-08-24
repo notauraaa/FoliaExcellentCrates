@@ -2,9 +2,9 @@ package su.nightexpress.excellentcrates.opening.inventory.spinner;
 
 import org.bukkit.Sound;
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.bridge.wrap.NightSound;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.sound.VanillaSound;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaSound;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.sound.VanillaSound;
 
 import java.util.List;
 
@@ -81,7 +81,7 @@ public class SpinnerBuilder {
         private int[]           slots;
         private int             spinDelay;
         private List<SpinStep>  spinSteps;
-        private NightSound      sound;
+        private FoliaSound      sound;
         private SpinnerProvider provider;
 
         private Steps(@NotNull SpinnerType type) {

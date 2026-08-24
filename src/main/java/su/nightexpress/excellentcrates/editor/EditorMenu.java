@@ -7,15 +7,15 @@ import org.bukkit.inventory.MenuType;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.config.Lang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.NormalMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.NormalMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 import static su.nightexpress.excellentcrates.Placeholders.*;
 
 public class EditorMenu extends NormalMenu<CratesPlugin> implements LangContainer {
@@ -43,7 +43,7 @@ public class EditorMenu extends NormalMenu<CratesPlugin> implements LangContaine
 
     @Override
     protected void onPrepare(@NotNull MenuViewer viewer, @NotNull InventoryView view) {
-        viewer.addItem(NightItem.fromType(Material.VAULT)
+        viewer.addItem(FoliaItem.fromType(Material.VAULT)
             .localized(CRATES_LOCALE)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(this.plugin.getCrateManager().countCrates())))
             .toMenuItem()
@@ -54,7 +54,7 @@ public class EditorMenu extends NormalMenu<CratesPlugin> implements LangContaine
             .build()
         );
 
-        viewer.addItem(NightItem.fromType(Material.TRIAL_KEY)
+        viewer.addItem(FoliaItem.fromType(Material.TRIAL_KEY)
             .localized(KEYS_LOCALE)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(this.plugin.getKeyManager().countKeys())))
             .toMenuItem()

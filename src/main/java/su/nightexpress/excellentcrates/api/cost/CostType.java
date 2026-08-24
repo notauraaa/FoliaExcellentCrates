@@ -1,7 +1,7 @@
 package su.nightexpress.excellentcrates.api.cost;
 
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.config.FileConfig;
+import com.notauraaa.folianightcore.config.FileConfig;
 
 public interface CostType {
 

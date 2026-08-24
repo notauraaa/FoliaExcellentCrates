@@ -1,6 +1,6 @@
 package su.nightexpress.excellentcrates.data.crate;
 
-import su.nightexpress.nightcore.util.TimeUtil;
+import com.notauraaa.folianightcore.util.TimeUtil;
 
 public class UserCrateData {
 

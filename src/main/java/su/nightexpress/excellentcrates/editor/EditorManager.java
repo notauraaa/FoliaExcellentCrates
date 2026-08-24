@@ -12,7 +12,7 @@ import su.nightexpress.excellentcrates.editor.crate.*;
 import su.nightexpress.excellentcrates.editor.key.KeyListMenu;
 import su.nightexpress.excellentcrates.editor.key.KeyOptionsMenu;
 import su.nightexpress.excellentcrates.key.CrateKey;
-import su.nightexpress.nightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.manager.AbstractManager;
 
 public class EditorManager extends AbstractManager<CratesPlugin> {
 

@@ -15,16 +15,16 @@ import su.nightexpress.excellentcrates.crate.cost.Cost;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.OpenOptions;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.ConfigBased;
-import su.nightexpress.nightcore.ui.menu.data.MenuLoader;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
+import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class OpeningAmountMenu extends LinkedMenu<CratesPlugin, OpeningAmountMenu.Data> implements ConfigBased {
 
@@ -67,7 +67,7 @@ public class OpeningAmountMenu extends LinkedMenu<CratesPlugin, OpeningAmountMen
         for (int index = 0; index < amounts.length; index++) {
             int amount = amounts[index];
 
-            viewer.addItem(NightItem.fromItemStack(crate.getItemStack())
+            viewer.addItem(FoliaItem.fromItemStack(crate.getItemStack())
                 .localized(index == 0 ? Lang.UI_OPEN_AMOUNT_SINGLE : Lang.UI_OPEN_AMOUNT_ALL)
                 .replacement(replacer -> replacer
                     .replace(crate.replacePlaceholders())
@@ -99,21 +99,21 @@ public class OpeningAmountMenu extends LinkedMenu<CratesPlugin, OpeningAmountMen
         this.slotsSingle = ConfigValue.create("Slots.Single", new int[]{11}).read(config);
         this.slotsAll = ConfigValue.create("Slots.All", new int[]{15}).read(config);
 
-        loader.addDefaultItem(NightItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(1,2,3,10,11,12,19,20,21,5,6,7,14,15,16,23,24,25)
         );
 
-        loader.addDefaultItem(NightItem.fromType(Material.LIME_STAINED_GLASS_PANE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.LIME_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(4,13,22)
         );
 
-        loader.addDefaultItem(NightItem.fromType(Material.YELLOW_STAINED_GLASS_PANE)
+        loader.addDefaultItem(FoliaItem.fromType(Material.YELLOW_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)

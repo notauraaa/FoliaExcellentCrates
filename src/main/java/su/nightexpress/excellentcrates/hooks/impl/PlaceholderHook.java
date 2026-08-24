@@ -12,11 +12,11 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.Milestone;
 import su.nightexpress.excellentcrates.data.crate.UserCrateData;
 import su.nightexpress.excellentcrates.user.CrateUser;
-import su.nightexpress.nightcore.bridge.wrap.NightProfile;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.util.NumberUtil;
-import su.nightexpress.nightcore.util.profile.CachedProfile;
-import su.nightexpress.nightcore.util.time.TimeFormats;
+import com.notauraaa.folianightcore.bridge.wrap.FoliaProfile;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.profile.CachedProfile;
+import com.notauraaa.folianightcore.util.time.TimeFormats;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -126,7 +126,7 @@ public class PlaceholderHook {
                 return reward.getName();
             });
 
-            this.userPlaceholders.put("latest_opener", (player, crate) -> crate.getLastOpener().map(CachedProfile::query).map(NightProfile::getName).orElse(Lang.OTHER_LAST_OPENER_EMPTY.text()));
+            this.userPlaceholders.put("latest_opener", (player, crate) -> crate.getLastOpener().map(CachedProfile::query).map(FoliaProfile::getName).orElse(Lang.OTHER_LAST_OPENER_EMPTY.text()));
             this.userPlaceholders.put("latest_rolled_reward", (player, crate) -> crate.getLastRewardName());
         }
 

@@ -10,23 +10,23 @@ import su.nightexpress.excellentcrates.config.Config;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.util.ClickType;
 import su.nightexpress.excellentcrates.util.InteractType;
-import su.nightexpress.nightcore.config.ConfigValue;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.menu.MenuOptions;
-import su.nightexpress.nightcore.menu.MenuViewer;
-import su.nightexpress.nightcore.menu.impl.ConfigMenu;
-import su.nightexpress.nightcore.menu.item.ItemOptions;
-import su.nightexpress.nightcore.menu.item.MenuItem;
-import su.nightexpress.nightcore.util.ItemReplacer;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.config.ConfigValue;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.menu.MenuOptions;
+import com.notauraaa.folianightcore.menu.MenuViewer;
+import com.notauraaa.folianightcore.menu.impl.ConfigMenu;
+import com.notauraaa.folianightcore.menu.item.ItemOptions;
+import com.notauraaa.folianightcore.menu.item.MenuItem;
+import com.notauraaa.folianightcore.util.ItemReplacer;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.tag.Tags.*;
+import static com.notauraaa.folianightcore.util.text.tag.Tags.*;
 
 @Deprecated
 public class CratesMenu extends ConfigMenu<CratesPlugin> {

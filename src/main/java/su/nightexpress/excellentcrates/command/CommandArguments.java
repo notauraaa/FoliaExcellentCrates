@@ -5,9 +5,9 @@ import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.key.CrateKey;
-import su.nightexpress.nightcore.commands.Commands;
-import su.nightexpress.nightcore.commands.builder.ArgumentNodeBuilder;
-import su.nightexpress.nightcore.commands.exceptions.CommandSyntaxException;
+import com.notauraaa.folianightcore.commands.Commands;
+import com.notauraaa.folianightcore.commands.builder.ArgumentNodeBuilder;
+import com.notauraaa.folianightcore.commands.exceptions.CommandSyntaxException;
 
 import java.util.Optional;
 

@@ -3,7 +3,7 @@ version: '${project.version}'
 name: FoliaExcellentCrates
 author: NotAuraaa
 description: Lightweight, powerful, feature-rich and highly customizable crates plugin with Folia support.
-depend: [ nightcore ]
+depend: [ FoliaNightcore ]
 softdepend:
   - PlaceholderAPI
   - ProtocolLib

@@ -3,7 +3,7 @@ package su.nightexpress.excellentcrates.user;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.data.DataHandler;
-import su.nightexpress.nightcore.db.AbstractUserManager;
+import com.notauraaa.folianightcore.db.AbstractUserManager;
 
 import java.util.UUID;
 

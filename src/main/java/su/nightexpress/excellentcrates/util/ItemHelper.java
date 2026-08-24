@@ -2,17 +2,17 @@ package su.nightexpress.excellentcrates.util;
 
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.bridge.item.ItemAdapter;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.integration.item.ItemBridge;
-import su.nightexpress.nightcore.integration.item.adapter.IdentifiableItemAdapter;
-import su.nightexpress.nightcore.integration.item.data.ItemIdData;
-import su.nightexpress.nightcore.integration.item.impl.AdaptedCustomStack;
-import su.nightexpress.nightcore.integration.item.impl.AdaptedItemStack;
-import su.nightexpress.nightcore.integration.item.impl.AdaptedVanillaStack;
-import su.nightexpress.nightcore.util.ItemTag;
-import su.nightexpress.nightcore.util.Version;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.bridge.item.ItemAdapter;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.integration.item.ItemBridge;
+import com.notauraaa.folianightcore.integration.item.adapter.IdentifiableItemAdapter;
+import com.notauraaa.folianightcore.integration.item.data.ItemIdData;
+import com.notauraaa.folianightcore.integration.item.impl.AdaptedCustomStack;
+import com.notauraaa.folianightcore.integration.item.impl.AdaptedItemStack;
+import com.notauraaa.folianightcore.integration.item.impl.AdaptedVanillaStack;
+import com.notauraaa.folianightcore.util.ItemTag;
+import com.notauraaa.folianightcore.util.Version;
 
 import java.util.Optional;
 

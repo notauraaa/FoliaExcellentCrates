@@ -19,9 +19,9 @@ import su.nightexpress.excellentcrates.key.dialog.KeyDialogs;
 import su.nightexpress.excellentcrates.registry.CratesRegistries;
 import su.nightexpress.excellentcrates.user.CrateUser;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.manager.AbstractManager;
-import su.nightexpress.nightcore.util.*;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.manager.AbstractManager;
+import com.notauraaa.folianightcore.util.*;
 
 import java.io.File;
 import java.io.IOException;

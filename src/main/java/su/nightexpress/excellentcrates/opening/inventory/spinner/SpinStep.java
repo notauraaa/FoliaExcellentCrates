@@ -1,8 +1,8 @@
 package su.nightexpress.excellentcrates.opening.inventory.spinner;
 
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.Lists;
+import com.notauraaa.folianightcore.util.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;

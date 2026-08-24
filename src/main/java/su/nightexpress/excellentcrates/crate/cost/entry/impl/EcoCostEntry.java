@@ -10,11 +10,11 @@ import su.nightexpress.excellentcrates.crate.cost.type.impl.EcoCostType;
 import su.nightexpress.excellentcrates.dialog.DialogKey;
 import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.dialog.cost.CurrencyCostOptionsDialog;
-import su.nightexpress.nightcore.bridge.currency.Currency;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.integration.currency.EconomyBridge;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.bridge.currency.Currency;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.integration.currency.EconomyBridge;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.Optional;
 
@@ -55,10 +55,10 @@ public class EcoCostEntry extends AbstractCostEntry<EcoCostType> {
 
     @Override
     @NotNull
-    public NightItem getEditorIcon() {
+    public FoliaItem getEditorIcon() {
         Optional<Currency> ecoOpt = this.currency();
 
-        return ecoOpt.map(currency -> NightItem.fromItemStack(currency.getIcon())).orElse(NightItem.fromType(Material.BARRIER))
+        return ecoOpt.map(currency -> FoliaItem.fromItemStack(currency.getIcon())).orElse(FoliaItem.fromType(Material.BARRIER))
             .localized(EcoCostType.LOCALE_EDIT_BUTTON)
             .replacement(replacer -> replacer
                 .replace(Placeholders.GENERIC_ID, () -> ecoOpt.map(currency -> CoreLang.goodEntry(currency.getInternalId())).orElse(CoreLang.badEntry(this.currencyId)))

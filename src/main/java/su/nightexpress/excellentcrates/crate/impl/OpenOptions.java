@@ -1,7 +1,7 @@
 package su.nightexpress.excellentcrates.crate.impl;
 
 import org.jetbrains.annotations.NotNull;
-import su.nightexpress.nightcore.util.Lists;
+import com.notauraaa.folianightcore.util.Lists;
 
 import java.util.Arrays;
 import java.util.HashSet;

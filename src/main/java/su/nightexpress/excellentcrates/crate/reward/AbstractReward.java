@@ -12,11 +12,11 @@ import su.nightexpress.excellentcrates.crate.limit.LimitValues;
 import su.nightexpress.excellentcrates.data.reward.RewardData;
 import su.nightexpress.excellentcrates.util.CrateUtils;
 import su.nightexpress.excellentcrates.util.ItemHelper;
-import su.nightexpress.nightcore.bridge.item.AdaptedItem;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.placeholder.Replacer;
-import su.nightexpress.nightcore.util.problem.ProblemCollector;
-import su.nightexpress.nightcore.util.problem.ProblemReporter;
+import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
+import com.notauraaa.folianightcore.util.problem.ProblemCollector;
+import com.notauraaa.folianightcore.util.problem.ProblemReporter;
 
 import java.util.HashSet;
 import java.util.Set;

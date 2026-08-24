@@ -7,10 +7,10 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.LocationUtil;
-import su.nightexpress.nightcore.util.NumberUtil;
-import su.nightexpress.nightcore.util.geodata.pos.BlockPos;
+import com.notauraaa.folianightcore.config.FileConfig;
+import com.notauraaa.folianightcore.util.LocationUtil;
+import com.notauraaa.folianightcore.util.NumberUtil;
+import com.notauraaa.folianightcore.util.geodata.pos.BlockPos;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;

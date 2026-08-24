@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.data.DataManager;
-import su.nightexpress.nightcore.util.TimeUtil;
+import com.notauraaa.folianightcore.util.TimeUtil;
 
 public class RewardData {
 

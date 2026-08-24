@@ -12,22 +12,22 @@ import su.nightexpress.excellentcrates.dialog.DialogRegistry;
 import su.nightexpress.excellentcrates.key.dialog.KeyDialogs;
 import su.nightexpress.excellentcrates.key.CrateKey;
 import su.nightexpress.excellentcrates.key.KeyManager;
-import su.nightexpress.nightcore.core.config.CoreLang;
-import su.nightexpress.nightcore.locale.LangContainer;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.IconLocale;
-import su.nightexpress.nightcore.ui.menu.MenuViewer;
-import su.nightexpress.nightcore.ui.menu.data.Filled;
-import su.nightexpress.nightcore.ui.menu.data.MenuFiller;
-import su.nightexpress.nightcore.ui.menu.item.MenuItem;
-import su.nightexpress.nightcore.ui.menu.type.LinkedMenu;
-import su.nightexpress.nightcore.util.bukkit.NightItem;
+import com.notauraaa.folianightcore.core.config.CoreLang;
+import com.notauraaa.folianightcore.locale.LangContainer;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.IconLocale;
+import com.notauraaa.folianightcore.ui.menu.MenuViewer;
+import com.notauraaa.folianightcore.ui.menu.data.Filled;
+import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
+import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
+import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
 import static su.nightexpress.excellentcrates.Placeholders.*;
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.GREEN;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.GREEN;
 
 public class KeyListMenu extends LinkedMenu<CratesPlugin, KeyManager> implements Filled<CrateKey>, LangContainer {
 
@@ -76,7 +76,7 @@ public class KeyListMenu extends LinkedMenu<CratesPlugin, KeyManager> implements
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(plugin.getKeyManager().getKeys().stream().sorted(Comparator.comparing(CrateKey::getId)).toList());
         autoFill.setItemCreator(key -> {
-            return NightItem.fromItemStack(key.getRawItem())
+            return FoliaItem.fromItemStack(key.getRawItem())
                 .hideAllComponents()
                 .localized(LOCALE_KEY)
                 .replacement(replacer -> replacer

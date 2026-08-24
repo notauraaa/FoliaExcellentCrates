@@ -1,7 +1,7 @@
 package su.nightexpress.excellentcrates.config;
 
 import su.nightexpress.excellentcrates.Placeholders;
-import su.nightexpress.nightcore.util.wrapper.UniPermission;
+import com.notauraaa.folianightcore.util.wrapper.UniPermission;
 
 import static org.bukkit.permissions.PermissionDefault.*;
 

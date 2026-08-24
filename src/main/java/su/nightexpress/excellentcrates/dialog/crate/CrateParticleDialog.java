@@ -13,27 +13,27 @@ import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.dialog.Dialog;
 import su.nightexpress.excellentcrates.util.CrateUtils;
-import su.nightexpress.nightcore.bridge.common.NightNbtHolder;
-import su.nightexpress.nightcore.bridge.dialog.wrap.WrappedDialog;
-import su.nightexpress.nightcore.bridge.dialog.wrap.base.WrappedDialogAfterAction;
-import su.nightexpress.nightcore.bridge.dialog.wrap.button.WrappedActionButton;
-import su.nightexpress.nightcore.bridge.dialog.wrap.input.WrappedDialogInput;
-import su.nightexpress.nightcore.locale.LangEntry;
-import su.nightexpress.nightcore.locale.entry.DialogElementLocale;
-import su.nightexpress.nightcore.locale.entry.TextLocale;
-import su.nightexpress.nightcore.ui.dialog.Dialogs;
-import su.nightexpress.nightcore.ui.dialog.build.*;
-import su.nightexpress.nightcore.util.BukkitThing;
-import su.nightexpress.nightcore.util.Version;
-import su.nightexpress.nightcore.util.bridge.RegistryType;
-import su.nightexpress.nightcore.util.wrapper.UniParticle;
+import com.notauraaa.folianightcore.bridge.common.FoliaNbtHolder;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.base.WrappedDialogAfterAction;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.button.WrappedActionButton;
+import com.notauraaa.folianightcore.bridge.dialog.wrap.input.WrappedDialogInput;
+import com.notauraaa.folianightcore.locale.LangEntry;
+import com.notauraaa.folianightcore.locale.entry.DialogElementLocale;
+import com.notauraaa.folianightcore.locale.entry.TextLocale;
+import com.notauraaa.folianightcore.ui.dialog.Dialogs;
+import com.notauraaa.folianightcore.ui.dialog.build.*;
+import com.notauraaa.folianightcore.util.BukkitThing;
+import com.notauraaa.folianightcore.util.Version;
+import com.notauraaa.folianightcore.util.bridge.RegistryType;
+import com.notauraaa.folianightcore.util.wrapper.UniParticle;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 
-import static su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers.*;
+import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 
 public class CrateParticleDialog extends Dialog<Crate> {
 
@@ -115,7 +115,7 @@ public class CrateParticleDialog extends Dialog<Crate> {
             String sprite = spriteName == null ? null : SPRITE.apply(PARTICLES_ATLAS, spriteName);
             String label = (hasData ? LABEL_ASTERISK : LABEL_NORMAL).formatted(sprite == null ? "" : sprite, localized);
 
-            NightNbtHolder nbt = NightNbtHolder.builder().put(JSON_ID, BukkitThing.getAsString(particle)).build();
+            FoliaNbtHolder nbt = FoliaNbtHolder.builder().put(JSON_ID, BukkitThing.getAsString(particle)).build();
             buttons.add(DialogButtons.action(label).action(DialogActions.customClick(DialogActions.OK, nbt)).build());
         });
 
@@ -172,9 +172,8 @@ public class CrateParticleDialog extends Dialog<Crate> {
             case EXPLOSION -> "explosion_10";
             case HAPPY_VILLAGER -> "glint";
             case GUST -> "gust_8";
-            case HEART, INFESTED, ENCHANTED_HIT, FIREFLY, FLASH, GLOW, BUBBLE, LAVA,
+            case HEART, INFESTED, ENCHANTED_HIT, FLASH, GLOW, BUBBLE, LAVA,
                  NAUTILUS, NOTE, RAID_OMEN, SHRIEK, SOUL_FIRE_FLAME, TRIAL_OMEN, VAULT_CONNECTION -> value;
-            case TINTED_LEAVES -> "leaf_0";
             case PALE_OAK_LEAVES -> "pale_oak_0";
             case SCULK_CHARGE -> "sculk_charge_3";
             case SCULK_CHARGE_POP -> "sculk_charge_pop_0";
@@ -193,7 +192,7 @@ public class CrateParticleDialog extends Dialog<Crate> {
 
     private void openParticleData(@NotNull Player player, @NotNull Crate crate, @NotNull Particle particle, @Nullable Runnable originCallback) {
         Class<?> type = particle.getDataType();
-        Function<NightNbtHolder, Object> dataParser;
+        Function<FoliaNbtHolder, Object> dataParser;
 
         List<WrappedDialogInput> inputs = new ArrayList<>();
         DialogElementLocale bodyLocale;
@@ -213,14 +212,14 @@ public class CrateParticleDialog extends Dialog<Crate> {
                 return new Particle.DustOptions(color, size);
             };
         }
-        else if (type.getSimpleName().equalsIgnoreCase("Spell")) {
+        else if (type.getSimpleName().equalsIgnoreCase("DustTransition")) {
             bodyLocale = BODY_DATA_COLOR;
             inputs.add(DialogInputs.numberRange(JSON_EXTRA, INPUT_DATA_POWER, MIN_POWER, MAX_POWER).initial(DEF_POWER).step(POWER_STEP).build());
             inputs.addAll(this.getColorButtons());
             dataParser = nbtHolder -> {
                 Color color = parseColor(nbtHolder);
                 float power = nbtHolder.getFloat(JSON_EXTRA, DEF_POWER);
-                return new Particle.Spell(color, power);
+                return new Particle.DustTransition(color, color, power);
             };
         }
         else if (type == ItemStack.class) {
@@ -278,7 +277,7 @@ public class CrateParticleDialog extends Dialog<Crate> {
     }
 
     @NotNull
-    private static Color parseColor(@NotNull NightNbtHolder nbtHolder) {
+    private static Color parseColor(@NotNull FoliaNbtHolder nbtHolder) {
         int red = nbtHolder.getInt(JSON_RED, COLOR_MAX);
         int green = nbtHolder.getInt(JSON_GREEN, COLOR_MAX);
         int blue = nbtHolder.getInt(JSON_BLUE, COLOR_MAX);

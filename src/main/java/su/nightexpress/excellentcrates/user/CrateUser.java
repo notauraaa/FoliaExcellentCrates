@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.data.crate.UserCrateData;
 import su.nightexpress.excellentcrates.key.CrateKey;
-import su.nightexpress.nightcore.db.AbstractUser;
+import com.notauraaa.folianightcore.db.AbstractUser;
 
 import java.util.HashMap;
 import java.util.Map;
