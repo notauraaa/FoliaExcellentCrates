@@ -13,7 +13,7 @@ import com.notauraaa.folianightcore.locale.entry.IconLocale;
 import com.notauraaa.folianightcore.ui.menu.MenuViewer;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.NormalMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import static com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers.*;
 import static su.nightexpress.excellentcrates.Placeholders.*;
@@ -43,7 +43,7 @@ public class EditorMenu extends NormalMenu<CratesPlugin> implements LangContaine
 
     @Override
     protected void onPrepare(@NotNull MenuViewer viewer, @NotNull InventoryView view) {
-        viewer.addItem(FoliaItem.fromType(Material.VAULT)
+        viewer.addItem(SafeFoliaItem.fromType(Material.VAULT)
             .localized(CRATES_LOCALE)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(this.plugin.getCrateManager().countCrates())))
             .toMenuItem()
@@ -54,7 +54,7 @@ public class EditorMenu extends NormalMenu<CratesPlugin> implements LangContaine
             .build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.TRIAL_KEY)
+        viewer.addItem(SafeFoliaItem.fromType(Material.TRIAL_KEY)
             .localized(KEYS_LOCALE)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(this.plugin.getKeyManager().countKeys())))
             .toMenuItem()

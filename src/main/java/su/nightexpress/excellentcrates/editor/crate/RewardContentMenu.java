@@ -28,7 +28,7 @@ import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.Players;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -109,7 +109,7 @@ public class RewardContentMenu extends LinkedMenu<CratesPlugin, ItemReward> impl
         Player player = viewer.getPlayer();
         ItemReward reward = this.getLink(player);
 
-        viewer.addItem(FoliaItem.fromType(Material.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE).localized(LOCALE_PLACEHOLDERS)
+        viewer.addItem(SafeFoliaItem.fromType(Material.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE).localized(LOCALE_PLACEHOLDERS)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.isAllowItemPlaceholders())))
             .toMenuItem().setSlots(4).setHandler((viewer1, event) -> {
                 reward.setAllowItemPlaceholders(!reward.isAllowItemPlaceholders());

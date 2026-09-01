@@ -25,7 +25,7 @@ import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.Players;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.stream.IntStream;
@@ -83,7 +83,7 @@ public class KeyOptionsMenu extends LinkedMenu<CratesPlugin, CrateKey> implement
         CrateKey key = this.getLink(player);
         Runnable flush = () -> this.flush(player);
 
-        viewer.addItem(FoliaItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
+        viewer.addItem(SafeFoliaItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
             .replacement(replacer -> replacer.replace(key.replacePlaceholders()))
             .toMenuItem().setSlots(11).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, KeyDialogs.NAME, key, flush);
@@ -91,7 +91,7 @@ public class KeyOptionsMenu extends LinkedMenu<CratesPlugin, CrateKey> implement
         );
 
         if (!key.isVirtual()) {
-            viewer.addItem(FoliaItem.fromItemStack(key.getItemStack())
+            viewer.addItem(SafeFoliaItem.fromItemStack(key.getItemStack())
                 .localized(LOCALE_ITEM)
                 .replacement(replacer -> replacer
                     .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_ITEM, key.getItem().isValid()))
@@ -118,7 +118,7 @@ public class KeyOptionsMenu extends LinkedMenu<CratesPlugin, CrateKey> implement
             );
         }
 
-        viewer.addItem(FoliaItem.fromType(Material.ENDER_PEARL).localized(LOCALE_VIRTUAL)
+        viewer.addItem(SafeFoliaItem.fromType(Material.ENDER_PEARL).localized(LOCALE_VIRTUAL)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_YES_NO.get(key.isVirtual())))
             .toMenuItem().setSlots(15).setHandler((viewer1, event) -> {
                 key.setVirtual(!key.isVirtual());
@@ -127,7 +127,7 @@ public class KeyOptionsMenu extends LinkedMenu<CratesPlugin, CrateKey> implement
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
+        viewer.addItem(SafeFoliaItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
             .toMenuItem().setSlots(44).setHandler((viewer1, event) -> {
                 if (event.getClick() != ClickType.DROP) return;
 

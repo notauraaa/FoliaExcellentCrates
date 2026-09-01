@@ -27,6 +27,7 @@ import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.NumberUtil;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.ArrayList;
@@ -84,13 +85,13 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         autoFill.setItems(crate.getMilestones().stream().sorted(Comparator.comparing(Milestone::getOpenings)).toList());
         autoFill.setItemCreator(milestone -> {
             Reward reward = milestone.getReward();
-            if (reward == null) return new FoliaItem(Material.AIR);
+            if (reward == null) return new SafeFoliaItem(Material.AIR);
 
             int openings = user.getCrateData(crate).getMilestone();
             boolean isCompleted = openings >= milestone.getOpenings();
             String name;
             List<String> lore;
-            FoliaItem item = FoliaItem.fromItemStack(reward.getPreviewItem());
+            FoliaItem item = SafeFoliaItem.fromItemStack(reward.getPreviewItem());
 
             if (this.pointerEnabled) {
                 FoliaItem pointerItem = (isCompleted ? this.pointerComp : this.pointerInc).copy();
@@ -123,7 +124,7 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
                 TextHelper.setDisplayName(meta, replacer.apply(name));
                 TextHelper.setLore(meta, replacer.apply(lore));
             });
-            return FoliaItem.fromItemStack(itemStack);
+            return SafeFoliaItem.fromItemStack(itemStack);
         });
 
         return autoFill.build();
@@ -168,13 +169,13 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
 
         if (ConfigValue.create("Milestones.Completed.Custom_Item.Enabled", true).read(config)) {
             this.mileCompItem = ConfigValue.create("Milestones.Completed.Custom_Item.Value",
-                FoliaItem.asCustomHead(SKIN_CHECK_MARK)
+                SafeFoliaItem.asCustomHead(SKIN_CHECK_MARK)
             ).read(config);
         }
 
         if (ConfigValue.create("Milestones.Incompleted.Custom_Item.Enabled", false).read(config)) {
             this.mileIncItem = ConfigValue.create("Milestones.Incompleted.Custom_Item.Value",
-                FoliaItem.asCustomHead(SKIN_WRONG_MARK)
+                SafeFoliaItem.asCustomHead(SKIN_WRONG_MARK)
             ).read(config);
         }
 
@@ -185,11 +186,11 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         this.pointerSlots = ConfigValue.create("Milestones.Pointer.Slots", new int[]{1,19,3,21,5,23,7,25}).read(config);
 
         this.pointerComp = ConfigValue.create("Milestones.Pointer.Completed",
-            new FoliaItem(Material.LIME_STAINED_GLASS_PANE)
+            new SafeFoliaItem(Material.LIME_STAINED_GLASS_PANE)
         ).read(config);
 
         this.pointerInc = ConfigValue.create("Milestones.Pointer.Incompleted",
-            new FoliaItem(Material.WHITE_STAINED_GLASS_PANE)
+            new SafeFoliaItem(Material.WHITE_STAINED_GLASS_PANE)
         ).read(config);
 
         loader.addDefaultItem(MenuItem.buildReturn(this, 22, (viewer, event) -> {
@@ -200,10 +201,10 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
         loader.addDefaultItem(MenuItem.buildNextPage(this, 17).setPriority(MenuItem.HIGH_PRIORITY));
         loader.addDefaultItem(MenuItem.buildPreviousPage(this, 9).setPriority(MenuItem.HIGH_PRIORITY));
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE).toMenuItem()
+        loader.addDefaultItem(SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE).toMenuItem()
             .setSlots(0,1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26));
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).toMenuItem()
+        loader.addDefaultItem(SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).toMenuItem()
             .setSlots(9,10,11,12,13,14,15,16,17));
     }
 }

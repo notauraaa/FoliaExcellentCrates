@@ -9,6 +9,7 @@ import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import com.notauraaa.folianightcore.util.*;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.text.night.FoliaMessage;
 import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 import com.notauraaa.folianightcore.util.wrapper.UniParticle;
@@ -48,12 +49,12 @@ public class CrateUtils {
 
     @NotNull
     public static ItemStack getQuestionStack() {
-        return FoliaItem.asCustomHead("2705fd94a0c431927fb4e639b0fcfb49717e412285a02b439e0112da22b2e2ec").hideAllComponents().getItemStack();
+        return SafeFoliaItem.asCustomHead("2705fd94a0c431927fb4e639b0fcfb49717e412285a02b439e0112da22b2e2ec").hideAllComponents().getItemStack();
     }
 
     @NotNull
     public static FoliaItem getDefaultLinkTool() {
-        ItemStack item = FoliaItem.fromType(Material.BLAZE_ROD)
+        ItemStack item = SafeFoliaItem.fromType(Material.BLAZE_ROD)
             .hideAllComponents()
             .getItemStack();
         ItemUtil.editMeta(item, meta -> {
@@ -63,12 +64,12 @@ public class CrateUtils {
                 TagWrappers.GRAY.wrap("with the crate!")
             ));
         });
-        return FoliaItem.fromItemStack(item);
+        return SafeFoliaItem.fromItemStack(item);
     }
 
     @NotNull
     public static ItemStack getDefaultItem(@NotNull Crate crate) {
-        ItemStack item = FoliaItem.fromType(Material.CHEST)
+        ItemStack item = SafeFoliaItem.fromType(Material.CHEST)
             .hideAllComponents()
             .getItemStack();
         ItemUtil.editMeta(item, meta -> {

@@ -25,6 +25,7 @@ import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
 import com.notauraaa.folianightcore.util.sound.VanillaSound;
 
@@ -66,7 +67,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
             .setSlots(this.rewardSlots)
             .setItems(opening.getCrateRewards())
             .setItemCreator(reward -> {
-                org.bukkit.inventory.ItemStack item = FoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
+                org.bukkit.inventory.ItemStack item = SafeFoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
                 Replacer replacer = Replacer.create().replace(reward.replacePlaceholders());
                 if (opening.isSelectedReward(reward)) {
                     ItemUtil.editMeta(item, meta -> {
@@ -83,7 +84,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
                         TextHelper.setLore(meta, replacer.apply(this.rewardLore));
                     });
                 }
-                return FoliaItem.fromItemStack(item);
+                return SafeFoliaItem.fromItemStack(item);
             })
             .setItemClick(reward -> (viewer1, event) -> {
                 if (opening.isSelectedReward(reward)) {
@@ -186,7 +187,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         ).read(config);
 
         this.selectedIcon = ConfigValue.create("Selection.Icon",
-            FoliaItem.fromType(Material.LIME_STAINED_GLASS_PANE)
+            SafeFoliaItem.fromType(Material.LIME_STAINED_GLASS_PANE)
                 .setDisplayName(GREEN.wrap(BOLD.wrap("Selected: ")) + WHITE.wrap(REWARD_NAME))
                 .setLore(Lists.newList(
                     GRAY.wrap("You'll get this reward."),
@@ -201,7 +202,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         this.limitSound = ConfigValue.create("Selection.Sound-Limit", VanillaSound.of(Sound.ENTITY_VILLAGER_NO)).read(config);
         this.confirmSound = ConfigValue.create("Selection.Sound-Confirm", VanillaSound.of(Sound.BLOCK_VAULT_OPEN_SHUTTER)).read(config);
 
-        loader.addDefaultItem(new FoliaItem(Material.BLACK_STAINED_GLASS_PANE)
+        loader.addDefaultItem(new SafeFoliaItem(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(45, 54).toArray())
@@ -221,7 +222,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
                     GREEN.wrap("→ " + UNDERLINED.wrap("Click to confirm"))
                 ));
             });
-            loader.addDefaultItem(FoliaItem.fromItemStack(confirmItem)
+            loader.addDefaultItem(SafeFoliaItem.fromItemStack(confirmItem)
                 .hideAllComponents()
                 .toMenuItem()
                 .setSlots(49)
@@ -244,7 +245,7 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
                     WHITE.wrap("→ " + UNDERLINED.wrap("Click to exit"))
                 ));
             });
-            loader.addDefaultItem(FoliaItem.fromItemStack(notEnoughItem)
+            loader.addDefaultItem(SafeFoliaItem.fromItemStack(notEnoughItem)
                 .hideAllComponents()
                 .toMenuItem()
                 .setSlots(49)

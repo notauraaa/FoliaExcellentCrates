@@ -25,7 +25,7 @@ import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.ArrayList;
@@ -109,12 +109,12 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
                 replacer.replacePlaceholderAPI(player);
             }
 
-            org.bukkit.inventory.ItemStack item = FoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
+            org.bukkit.inventory.ItemStack item = SafeFoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
             ItemUtil.editMeta(item, meta -> {
                 TextHelper.setDisplayName(meta, replacer.apply(this.rewardName));
                 TextHelper.setLore(meta, replacer.apply(this.rewardLore));
             });
-            return FoliaItem.fromItemStack(item);
+            return SafeFoliaItem.fromItemStack(item);
         });
 
         return autoFill.build();
@@ -167,16 +167,16 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
             return source.hasItem() || source.hasBlock();
         }).build()));
 
-        loader.addDefaultItem(new FoliaItem(Material.BLACK_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
+        loader.addDefaultItem(new SafeFoliaItem(Material.BLACK_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
             .setSlots(1,2,3,5,6,7,9,18,27,17,26,35,37,38,39,40,41,42,43));
 
-        loader.addDefaultItem(new FoliaItem(Material.GRAY_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
+        loader.addDefaultItem(new SafeFoliaItem(Material.GRAY_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
             .setSlots(0,4,8,36,44));
 
         {
-            org.bukkit.inventory.ItemStack milestonesHead = FoliaItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0").getItemStack();
+            org.bukkit.inventory.ItemStack milestonesHead = SafeFoliaItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0").getItemStack();
             ItemUtil.editMeta(milestonesHead, meta -> TextHelper.setDisplayName(meta, GOLD.wrap(BOLD.wrap("Milestones"))));
-            loader.addDefaultItem(FoliaItem.fromItemStack(milestonesHead).toMenuItem()
+            loader.addDefaultItem(SafeFoliaItem.fromItemStack(milestonesHead).toMenuItem()
                 .setPriority(10)
                 .setSlots(4)
                 .setHandler(new ItemHandler("milestones", (viewer, event) -> {

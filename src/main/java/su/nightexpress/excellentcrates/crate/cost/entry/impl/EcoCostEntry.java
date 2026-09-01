@@ -15,6 +15,7 @@ import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.core.config.CoreLang;
 import com.notauraaa.folianightcore.integration.currency.EconomyBridge;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.Optional;
 
@@ -58,7 +59,7 @@ public class EcoCostEntry extends AbstractCostEntry<EcoCostType> {
     public FoliaItem getEditorIcon() {
         Optional<Currency> ecoOpt = this.currency();
 
-        return ecoOpt.map(currency -> FoliaItem.fromItemStack(currency.getIcon())).orElse(FoliaItem.fromType(Material.BARRIER))
+        return ecoOpt.map(currency -> SafeFoliaItem.fromItemStack(currency.getIcon())).orElse(SafeFoliaItem.fromType(Material.BARRIER))
             .localized(EcoCostType.LOCALE_EDIT_BUTTON)
             .replacement(replacer -> replacer
                 .replace(Placeholders.GENERIC_ID, () -> ecoOpt.map(currency -> CoreLang.goodEntry(currency.getInternalId())).orElse(CoreLang.badEntry(this.currencyId)))

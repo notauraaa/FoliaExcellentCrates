@@ -20,7 +20,7 @@ import com.notauraaa.folianightcore.locale.entry.IconLocale;
 import com.notauraaa.folianightcore.ui.menu.MenuViewer;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.List;
@@ -88,14 +88,14 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
             this.runNextTick(() -> this.plugin.getEditorManager().openOptionsMenu(viewer.getPlayer(), this.getLink(viewer)));
         }));
 
-        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(45,46,52,53)
         );
 
-        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
@@ -123,7 +123,7 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                 boolean isValid = cost.isValid();
                 boolean hasInvalids = cost.hasInvalids();
 
-                toggleBuilder = FoliaItem.fromType(cost.isEnabled() ? Material.LIME_DYE : Material.GRAY_DYE)
+                toggleBuilder = SafeFoliaItem.fromType(cost.isEnabled() ? Material.LIME_DYE : Material.GRAY_DYE)
                     .localized(cost.isEnabled() ? LOCALE_TOGGLE_ENABLED : LOCALE_TOGGLE_DISABLED)
                     .toMenuItem()
                     .setHandler((viewer1, event) -> {
@@ -132,7 +132,7 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                         this.runNextTick(() -> this.flush(viewer));
                     });
 
-                entryBuilder = FoliaItem.fromItemStack(cost.getIconStack())
+                entryBuilder = SafeFoliaItem.fromItemStack(cost.getIconStack())
                     .localized(cost.isEmpty() ? LOCALE_DATA_EMPTY : LOCALE_DATA_FILLED)
                     .replacement(replacer -> replacer
                         .replace(cost.replacePlaceholders())
@@ -153,15 +153,15 @@ public class CostsListMenu extends LinkedMenu<CratesPlugin, Crate> implements La
                         this.runNextTick(() -> plugin.getEditorManager().openCostOptions(player, crate, cost));
                     });
 
-                statusBuilder = FoliaItem.fromType(!isValid ? Material.RED_STAINED_GLASS_PANE : (hasInvalids ? Material.YELLOW_STAINED_GLASS_PANE : Material.LIME_STAINED_GLASS_PANE))
+                statusBuilder = SafeFoliaItem.fromType(!isValid ? Material.RED_STAINED_GLASS_PANE : (hasInvalids ? Material.YELLOW_STAINED_GLASS_PANE : Material.LIME_STAINED_GLASS_PANE))
                     .localized(!isValid ? LOCALE_STATUS_BAD : (hasInvalids ? LOCALE_STATUS_WARN : LOCALE_STATUS_GOOD))
                     .toMenuItem();
             }
             else {
-                toggleBuilder = FoliaItem.fromType(Material.GRAY_DYE).localized(LOCALE_TOGGLE_NOTHING).toMenuItem();
-                statusBuilder = FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).localized(LOCALE_STATUS_NOTHING).toMenuItem();
+                toggleBuilder = SafeFoliaItem.fromType(Material.GRAY_DYE).localized(LOCALE_TOGGLE_NOTHING).toMenuItem();
+                statusBuilder = SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE).localized(LOCALE_STATUS_NOTHING).toMenuItem();
 
-                entryBuilder = FoliaItem.fromType(Material.STRUCTURE_VOID)
+                entryBuilder = SafeFoliaItem.fromType(Material.STRUCTURE_VOID)
                     .localized(LOCALE_DATA_VACANT)
                     .hideAllComponents()
                     .toMenuItem()

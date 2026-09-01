@@ -27,7 +27,7 @@ import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.Players;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.List;
 
@@ -75,21 +75,21 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             this.runNextTick(() -> plugin.getEditorManager().openCosts(viewer.getPlayer(), this.getLink(viewer).crate));
         }));
 
-        this.addItem(FoliaItem.fromType(Material.GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(20,21,22,23,24)
         );
 
-        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(45,46,52,53)
         );
 
-        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
@@ -122,7 +122,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             this.flush(player);
         };
 
-        viewer.addItem(FoliaItem.fromType(Material.NAME_TAG)
+        viewer.addItem(SafeFoliaItem.fromType(Material.NAME_TAG)
             .localized(LOCALE_OPTION_NAME)
             .replacement(replacer -> replacer.replace(cost.replacePlaceholders()))
             .toMenuItem()
@@ -131,7 +131,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
             .build()
         );
 
-        viewer.addItem(FoliaItem.fromItemStack(cost.getIconStack())
+        viewer.addItem(SafeFoliaItem.fromItemStack(cost.getIconStack())
             .hideAllComponents()
             .localized(LOCALE_OPTION_ICON)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(this.itemDetection)))
@@ -179,7 +179,7 @@ public class CostOptionsMenu extends LinkedMenu<CratesPlugin, CostOptionsMenu.Da
                 });
             }
             else {
-                builder = FoliaItem.fromType(Material.LIME_DYE)
+                builder = SafeFoliaItem.fromType(Material.LIME_DYE)
                     .localized(LOCALE_ENTRY_VACANT)
                     .toMenuItem()
                     .setHandler((viewer1, event) -> this.dialogs.show(player, CostDialogs.ENTRY_CREATION, cost, saveAndFlush));

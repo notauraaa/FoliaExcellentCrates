@@ -18,6 +18,7 @@ import su.nightexpress.excellentcrates.opening.world.provider.SimpleRollProvider
 import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.random.Rnd;
 import com.notauraaa.folianightcore.util.random.WeightedItem;
 
@@ -178,7 +179,7 @@ public class OpeningUtils {
             provider.setInvType(MenuType.GENERIC_9X5);
             provider.setWinSlots(new int[]{20});
 
-            provider.getDefaultItems().put("background", FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+            provider.getDefaultItems().put("background", SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
                 .toMenuItem()
                 .setSlots(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 12, 13, 14, 22, 23, 30, 31, 32)
                 .build());
@@ -443,13 +444,13 @@ public class OpeningUtils {
 
     @NotNull
     private static WeightedItem<FoliaItem> getWeighted(@NotNull Material material, double weight) {
-        return new WeightedItem<>(FoliaItem.fromType(material), weight);
+        return new WeightedItem<>(SafeFoliaItem.fromType(material), weight);
     }
 
     @NotNull
     private static com.notauraaa.folianightcore.ui.menu.item.MenuItem createNamedHead(@NotNull String texture, @NotNull String displayName, int slot) {
-        org.bukkit.inventory.ItemStack item = FoliaItem.asCustomHead(texture).getItemStack();
+        org.bukkit.inventory.ItemStack item = SafeFoliaItem.asCustomHead(texture).getItemStack();
         ItemUtil.editMeta(item, meta -> TextHelper.setDisplayName(meta, displayName));
-        return FoliaItem.fromItemStack(item).toMenuItem().setSlots(slot).build();
+        return SafeFoliaItem.fromItemStack(item).toMenuItem().setSlots(slot).build();
     }
 }

@@ -21,7 +21,7 @@ import com.notauraaa.folianightcore.ui.menu.data.Filled;
 import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
@@ -74,7 +74,7 @@ public class CrateMilestonesMenu extends LinkedMenu<CratesPlugin, Crate> impleme
         autoFill.setItems(this.getLink(viewer).getMilestones().stream().sorted(Comparator.comparing(Milestone::getOpenings)).toList());
         autoFill.setItemCreator(milestone -> {
             Reward reward = milestone.getReward();
-            return FoliaItem.fromItemStack(reward == null ? CrateUtils.getQuestionStack() : reward.getPreviewItem())
+            return SafeFoliaItem.fromItemStack(reward == null ? CrateUtils.getQuestionStack() : reward.getPreviewItem())
                 .localized(MILESTONE_OBJECT)
                 .hideAllComponents()
                 .replacement(replacer -> replacer

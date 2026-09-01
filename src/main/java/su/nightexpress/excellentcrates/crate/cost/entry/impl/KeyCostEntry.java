@@ -16,6 +16,7 @@ import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.core.config.CoreLang;
 import com.notauraaa.folianightcore.util.LowerCase;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.Optional;
@@ -65,7 +66,7 @@ public class KeyCostEntry extends AbstractCostEntry<KeyCostType> {
     public FoliaItem getEditorIcon() {
         Optional<CrateKey> keyOpt = this.key();
 
-        return keyOpt.map(key -> FoliaItem.fromItemStack(key.getRawItem())).orElse(FoliaItem.fromType(Material.BARRIER))
+        return keyOpt.map(key -> SafeFoliaItem.fromItemStack(key.getRawItem())).orElse(SafeFoliaItem.fromType(Material.BARRIER))
             .localized(KeyCostType.LOCALE_EDIT_BUTTON)
             .replacement(replacer -> replacer
                 .replace(Placeholders.GENERIC_ID, () -> keyOpt.map(key -> CoreLang.goodEntry(key.getId())).orElse(CoreLang.badEntry(this.keyId)))

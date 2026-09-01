@@ -21,7 +21,7 @@ import com.notauraaa.folianightcore.ui.menu.data.Filled;
 import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
@@ -76,7 +76,7 @@ public class KeyListMenu extends LinkedMenu<CratesPlugin, KeyManager> implements
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(plugin.getKeyManager().getKeys().stream().sorted(Comparator.comparing(CrateKey::getId)).toList());
         autoFill.setItemCreator(key -> {
-            return FoliaItem.fromItemStack(key.getRawItem())
+            return SafeFoliaItem.fromItemStack(key.getRawItem())
                 .hideAllComponents()
                 .localized(LOCALE_KEY)
                 .replacement(replacer -> replacer

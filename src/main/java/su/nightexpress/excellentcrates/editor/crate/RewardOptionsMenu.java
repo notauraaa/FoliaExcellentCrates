@@ -29,7 +29,7 @@ import com.notauraaa.folianightcore.ui.menu.click.ClickResult;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.Players;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.stream.IntStream;
@@ -135,7 +135,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
         Crate crate = reward.getCrate();
         Runnable flush = () -> this.flush(player);
 
-        viewer.addItem(FoliaItem.fromItemStack(reward.getPreviewItem())
+        viewer.addItem(SafeFoliaItem.fromItemStack(reward.getPreviewItem())
             .localized(reward.getType() == RewardType.ITEM ? LOCALE_PREVIEW_CUSTOM : LOCALE_PREVIEW_NORMAL)
             .replacement(replacer -> replacer
                 .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_REWARD_PREVIEW, reward.getPreview().isValid()))
@@ -168,7 +168,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
         );
 
         if (reward instanceof ItemReward itemReward) {
-            viewer.addItem(FoliaItem.fromType(Material.BUNDLE)
+            viewer.addItem(SafeFoliaItem.fromType(Material.BUNDLE)
                 .hideAllComponents()
                 .localized(LOCALE_ITEMS)
                 .replacement(replacer -> replacer
@@ -181,7 +181,7 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             );
         }
         else if (reward instanceof CommandReward commandReward) {
-            viewer.addItem(FoliaItem.fromType(Material.COMMAND_BLOCK)
+            viewer.addItem(SafeFoliaItem.fromType(Material.COMMAND_BLOCK)
                 .hideAllComponents()
                 .localized(LOCALE_COMMANDS)
                 .replacement(replacer -> replacer
@@ -193,14 +193,14 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
                 }).build()
             );
 
-            viewer.addItem(FoliaItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
+            viewer.addItem(SafeFoliaItem.fromType(Material.NAME_TAG).localized(LOCALE_NAME)
                 .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
                 .toMenuItem().setSlots(30).setHandler((viewer1, event) -> {
                     this.dialogs.show(player, RewardDialogs.NAME, commandReward, flush);
                 }).build()
             );
 
-            viewer.addItem(FoliaItem.fromType(Material.WRITABLE_BOOK).localized(LOCALE_DESCRIPTION)
+            viewer.addItem(SafeFoliaItem.fromType(Material.WRITABLE_BOOK).localized(LOCALE_DESCRIPTION)
                 .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
                 .toMenuItem().setSlots(32).setHandler((viewer1, event) -> {
                     this.dialogs.show(player, RewardDialogs.DESCRIPTION, commandReward, flush);
@@ -208,14 +208,14 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             );
         }
 
-        viewer.addItem(FoliaItem.fromType(Material.GLISTERING_MELON_SLICE).localized(LOCALE_RARIRY_WEIGHT)
+        viewer.addItem(SafeFoliaItem.fromType(Material.GLISTERING_MELON_SLICE).localized(LOCALE_RARIRY_WEIGHT)
             .replacement(replacer -> replacer.replace(reward.replacePlaceholders()))
             .toMenuItem().setSlots(12).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.WEIGHT, reward, flush);
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.ENDER_PEARL).localized(LOCALE_BROADCAST)
+        viewer.addItem(SafeFoliaItem.fromType(Material.ENDER_PEARL).localized(LOCALE_BROADCAST)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.isBroadcast())))
             .toMenuItem().setSlots(13).setHandler((viewer1, event) -> {
                 reward.setBroadcast(!reward.isBroadcast());
@@ -224,21 +224,21 @@ public class RewardOptionsMenu extends LinkedMenu<CratesPlugin, Reward> implemen
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.REDSTONE).localized(LOCALE_PERMISSIONS)
+        viewer.addItem(SafeFoliaItem.fromType(Material.REDSTONE).localized(LOCALE_PERMISSIONS)
             .replacement(replacer -> replacer.replace(GENERIC_AMOUNT, () -> String.valueOf(reward.getIgnoredPermissions().size() + reward.getRequiredPermissions().size())))
             .toMenuItem().setSlots(14).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.PERMISSIONS, reward, flush);
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.COMPARATOR).localized(LOCALE_LIMITS)
+        viewer.addItem(SafeFoliaItem.fromType(Material.COMPARATOR).localized(LOCALE_LIMITS)
             .replacement(replacer -> replacer.replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(reward.getLimits().isEnabled())))
             .toMenuItem().setSlots(15).setHandler((viewer1, event) -> {
                 this.dialogs.show(player, RewardDialogs.LIMITS, reward, flush);
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
+        viewer.addItem(SafeFoliaItem.fromType(Material.BARRIER).localized(LOCALE_DELETE)
             .toMenuItem().setSlots(53).setHandler((viewer1, event) -> {
                 if (event.getClick() != ClickType.DROP) return;
 

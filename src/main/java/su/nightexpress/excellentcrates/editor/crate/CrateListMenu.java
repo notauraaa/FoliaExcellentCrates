@@ -20,7 +20,7 @@ import com.notauraaa.folianightcore.ui.menu.data.Filled;
 import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
@@ -74,7 +74,7 @@ public class CrateListMenu extends LinkedMenu<CratesPlugin, CrateManager> implem
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(this.getLink(viewer).getCrates().stream().sorted(Comparator.comparing(Crate::getId)).toList());
         autoFill.setItemCreator(crate -> {
-            return FoliaItem.fromItemStack(crate.getRawItemStack())
+            return SafeFoliaItem.fromItemStack(crate.getRawItemStack())
                 .localized(LOCALE_CRATE)
                 .replacement(replacer -> replacer
                     .replace(GENERIC_INSPECTION, () -> Lang.inspection(Lang.INSPECTIONS_GENERIC_OVERVIEW, !crate.hasProblems()))

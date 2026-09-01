@@ -31,7 +31,7 @@ import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.Players;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,14 +109,14 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
         this.addItem(MenuItem.buildNextPage(this, 41));
         this.addItem(MenuItem.buildPreviousPage(this, 39));
 
-        this.addItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(0, 36).toArray())
             .setPriority(-1)
         );
 
-        this.addItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        this.addItem(SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setSlots(IntStream.range(36, 45).toArray())
@@ -149,7 +149,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
         autoFill.setSlots(IntStream.range(0, 36).toArray());
         autoFill.setItems(this.getLink(viewer).crate.getRewards());
         autoFill.setItemCreator(reward -> {
-            return FoliaItem.fromItemStack(reward.getPreviewItem())
+            return SafeFoliaItem.fromItemStack(reward.getPreviewItem())
                 .hideAllComponents()
                 .localized(LOCALE_REWARD)
                 .replacement(replacer -> replacer
@@ -200,7 +200,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
     protected void onPrepare(@NotNull MenuViewer viewer, @NotNull InventoryView view) {
         Data data = this.getLink(viewer);
 
-        viewer.addItem(FoliaItem.fromType(Material.DROPPER)
+        viewer.addItem(SafeFoliaItem.fromType(Material.DROPPER)
             .localized(LOCALE_MASS_MODE)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(data.massMode))
@@ -216,7 +216,7 @@ public class RewardListMenu extends LinkedMenu<CratesPlugin, RewardListMenu.Data
             }).build()
         );
 
-        viewer.addItem(FoliaItem.fromType(Material.PISTON)
+        viewer.addItem(SafeFoliaItem.fromType(Material.PISTON)
             .localized(LOCALE_ARRANGE_MODE)
             .replacement(replacer -> replacer
                 .replace(GENERIC_STATE, () -> CoreLang.STATE_ENABLED_DISALBED.get(data.arrangeMode))

@@ -21,7 +21,7 @@ import com.notauraaa.folianightcore.ui.menu.MenuViewer;
 import com.notauraaa.folianightcore.ui.menu.data.ConfigBased;
 import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
-import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import su.nightexpress.excellentcrates.util.SafeFoliaItem;
 import com.notauraaa.folianightcore.util.text.night.wrapper.TagWrappers;
 
 import java.util.HashMap;
@@ -66,7 +66,7 @@ public class OpeningCostMenu extends LinkedMenu<CratesPlugin, CrateSource> imple
             int slot = costSlots[index];
             int maxOpenings = cost.countMaxOpenings(player);
 
-            viewer.addItem(FoliaItem.fromItemStack(cost.getIconStack())
+            viewer.addItem(SafeFoliaItem.fromItemStack(cost.getIconStack())
                 .localized(maxOpenings > 0 ? Lang.UI_COSTS_OPTION_AVAILABLE : Lang.UI_COSTS_OPTION_UNAVAILABLE)
                 .replacement(replacer -> replacer
                     .replace(crate.replacePlaceholders())
@@ -119,14 +119,14 @@ public class OpeningCostMenu extends LinkedMenu<CratesPlugin, CrateSource> imple
             this.slotsByCostsAmount.put(amount, skillSlots);
         }
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
+        loader.addDefaultItem(SafeFoliaItem.fromType(Material.BLACK_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
             .setSlots(0,1,2,3,4,5,6,7,8,9,17,18,19,20,21,22,23,24,25,26)
         );
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
+        loader.addDefaultItem(SafeFoliaItem.fromType(Material.GRAY_STAINED_GLASS_PANE)
             .setHideTooltip(true)
             .toMenuItem()
             .setPriority(-1)
