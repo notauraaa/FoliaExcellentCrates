@@ -24,6 +24,7 @@ import com.notauraaa.folianightcore.FoliaPlugin;
 import com.notauraaa.folianightcore.commands.command.FoliaCommand;
 import com.notauraaa.folianightcore.config.PluginDetails;
 import com.notauraaa.folianightcore.util.Plugins;
+import su.nightexpress.excellentcrates.util.FoliaTextPatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,7 @@ public class CratesPlugin extends FoliaPlugin {
 
     @Override
     protected void onStartup() {
+        FoliaTextPatch.apply();
         CratesAPI.load(this);
         Keys.load(this);
     }
