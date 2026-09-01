@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.config.Lang;
 import su.nightexpress.excellentcrates.dialog.Dialog;
 import su.nightexpress.excellentcrates.util.ItemHelper;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.bridge.dialog.wrap.WrappedDialog;
 import com.notauraaa.folianightcore.bridge.dialog.wrap.input.WrappedDialogInput;
 import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
@@ -73,7 +74,7 @@ public abstract class GenericNameDialog<T> extends Dialog<T> {
 
                 if (replace) {
                     ItemStack itemStack = ItemHelper.toItemStack(crateItem);
-                    ItemUtil.editMeta(itemStack, meta -> ItemUtil.setCustomName(meta, name));
+                    ItemUtil.editMeta(itemStack, meta -> TextHelper.setDisplayName(meta, name));
                     this.setItem(source, ItemHelper.vanilla(itemStack));
                 }
 

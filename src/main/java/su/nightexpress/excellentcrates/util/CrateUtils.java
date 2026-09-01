@@ -53,21 +53,29 @@ public class CrateUtils {
 
     @NotNull
     public static FoliaItem getDefaultLinkTool() {
-        return FoliaItem.fromType(Material.BLAZE_ROD)
+        ItemStack item = FoliaItem.fromType(Material.BLAZE_ROD)
             .hideAllComponents()
-            .setDisplayName(TagWrappers.GOLD.and(TagWrappers.BOLD).wrap("Link Tool"))
-            .setLore(Lists.newList(
+            .getItemStack();
+        ItemUtil.editMeta(item, meta -> {
+            TextHelper.setDisplayName(meta, TagWrappers.GOLD.and(TagWrappers.BOLD).wrap("Link Tool"));
+            TextHelper.setLore(meta, Lists.newList(
                 TagWrappers.GRAY.wrap("Click a block to link it"),
                 TagWrappers.GRAY.wrap("with the crate!")
             ));
+        });
+        return FoliaItem.fromItemStack(item);
     }
+
     @NotNull
     public static ItemStack getDefaultItem(@NotNull Crate crate) {
-        return FoliaItem.fromType(Material.CHEST)
-            .setDisplayName(crate.getName())
-            .setLore(crate.getDescription())
+        ItemStack item = FoliaItem.fromType(Material.CHEST)
             .hideAllComponents()
             .getItemStack();
+        ItemUtil.editMeta(item, meta -> {
+            TextHelper.setDisplayName(meta, crate.getName());
+            TextHelper.setLore(meta, crate.getDescription());
+        });
+        return item;
     }
 
     @NotNull

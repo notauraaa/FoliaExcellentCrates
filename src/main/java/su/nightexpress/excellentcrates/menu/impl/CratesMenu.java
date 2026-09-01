@@ -10,6 +10,7 @@ import su.nightexpress.excellentcrates.config.Config;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.util.ClickType;
 import su.nightexpress.excellentcrates.util.InteractType;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.config.ConfigValue;
 import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.menu.MenuOptions;
@@ -18,6 +19,7 @@ import com.notauraaa.folianightcore.menu.impl.ConfigMenu;
 import com.notauraaa.folianightcore.menu.item.ItemOptions;
 import com.notauraaa.folianightcore.menu.item.MenuItem;
 import com.notauraaa.folianightcore.util.ItemReplacer;
+import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.NumberUtil;
 
@@ -57,12 +59,10 @@ public class CratesMenu extends ConfigMenu<CratesPlugin> {
             Player player = viewer.getPlayer();
             ItemStack icon = crate.getRawItemStack();
 
-            ItemReplacer.create(icon).readMeta().trimmed().hideFlags()
-                .setDisplayName(this.crateName)
-                .setLore(this.crateLore)
-                .replace(crate.replacePlaceholders())
-                //.replace(GENERIC_KEYS, () -> NumberUtil.format(plugin.getKeyManager().getKeysAmount(player, crate)))
-                .writeMeta();
+            ItemUtil.editMeta(icon, meta -> {
+                TextHelper.setDisplayName(meta, crate.replacePlaceholders().apply(this.crateName));
+                TextHelper.setLore(meta, this.crateLore.stream().map(line -> crate.replacePlaceholders().apply(line)).toList());
+            });
 
             MenuItem menuItem = new MenuItem(icon);
             menuItem.setSlots(slot);

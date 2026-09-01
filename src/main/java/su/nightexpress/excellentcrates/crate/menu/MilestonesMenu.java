@@ -13,6 +13,7 @@ import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.Milestone;
 import su.nightexpress.excellentcrates.user.CrateUser;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.config.ConfigValue;
 import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.ui.menu.MenuViewer;
@@ -22,9 +23,11 @@ import com.notauraaa.folianightcore.ui.menu.data.MenuFiller;
 import com.notauraaa.folianightcore.ui.menu.data.MenuLoader;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.NumberUtil;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
+import com.notauraaa.folianightcore.util.placeholder.Replacer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -110,17 +113,17 @@ public class MilestonesMenu extends LinkedMenu<CratesPlugin, CrateSource> implem
                 if (this.mileIncItem != null) item = this.mileIncItem;
             }
 
-            return item
-                .copy()
-                .setDisplayName(name)
-                .setLore(lore)
-                .hideAllComponents()
-                .replacement(replacer -> replacer
-                    .replace(crate.replacePlaceholders())
-                    .replace(reward.replacePlaceholders())
-                    .replace(milestone.replacePlaceholders())
-                    .replace(PLACEHOLDER_OPENINGS_LEFT, NumberUtil.format(milestone.getOpenings() - openings))
-                );
+            org.bukkit.inventory.ItemStack itemStack = item.copy().hideAllComponents().getItemStack();
+            Replacer replacer = Replacer.create()
+                .replace(crate.replacePlaceholders())
+                .replace(reward.replacePlaceholders())
+                .replace(milestone.replacePlaceholders())
+                .replace(PLACEHOLDER_OPENINGS_LEFT, NumberUtil.format(milestone.getOpenings() - openings));
+            ItemUtil.editMeta(itemStack, meta -> {
+                TextHelper.setDisplayName(meta, replacer.apply(name));
+                TextHelper.setLore(meta, replacer.apply(lore));
+            });
+            return FoliaItem.fromItemStack(itemStack);
         });
 
         return autoFill.build();

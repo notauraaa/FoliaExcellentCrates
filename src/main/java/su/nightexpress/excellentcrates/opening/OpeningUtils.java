@@ -15,6 +15,8 @@ import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.Animat
 import su.nightexpress.excellentcrates.opening.inventory.spinner.provider.RewardProvider;
 import su.nightexpress.excellentcrates.opening.selectable.SelectableProvider;
 import su.nightexpress.excellentcrates.opening.world.provider.SimpleRollProvider;
+import su.nightexpress.excellentcrates.util.TextHelper;
+import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 import com.notauraaa.folianightcore.util.random.Rnd;
 import com.notauraaa.folianightcore.util.random.WeightedItem;
@@ -90,17 +92,11 @@ public class OpeningUtils {
             provider.setInvType(MenuType.GENERIC_9X3);
             provider.setWinSlots(new int[]{13});
 
-            provider.getDefaultItems().put("arrow_up", FoliaItem.asCustomHead("77334cddfab45d75ad28e1a47bf8cf5017d2f0982f6737da22d4972952510661")
-                .setDisplayName(CYAN.wrap(BOLD.wrap("↑ Your Reward ↑")))
-                .toMenuItem()
-                .setSlots(22)
-                .build());
+            provider.getDefaultItems().put("arrow_up", createNamedHead("77334cddfab45d75ad28e1a47bf8cf5017d2f0982f6737da22d4972952510661",
+                CYAN.wrap(BOLD.wrap("↑ Your Reward ↑")), 22));
 
-            provider.getDefaultItems().put("arrow_down", FoliaItem.asCustomHead("e7742034f59db890c8004156b727c77ca695c4399d8e0da5ce9227cf836bb8e2")
-                .setDisplayName(CYAN.wrap(BOLD.wrap("↓ Your Reward ↓")))
-                .toMenuItem()
-                .setSlots(4)
-                .build());
+            provider.getDefaultItems().put("arrow_down", createNamedHead("e7742034f59db890c8004156b727c77ca695c4399d8e0da5ce9227cf836bb8e2",
+                CYAN.wrap(BOLD.wrap("↓ Your Reward ↓")), 4));
 
             provider.addSpinner(SpinnerBuilder.rewardBuilder().name("main").mode(SpinMode.SEQUENTAL).spinnerId("normal")
                 .slots(17, 16, 15, 14, 13, 12, 11, 10, 9)
@@ -187,17 +183,11 @@ public class OpeningUtils {
                 .setSlots(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 12, 13, 14, 22, 23, 30, 31, 32)
                 .build());
 
-            provider.getDefaultItems().put("arrow_right", FoliaItem.asCustomHead("a6af217aeddf0f40064969ebb2042f7aeafbc7d0f175a27624133a3befd10281")
-                .setDisplayName(LIGHT_RED.wrap(BOLD.wrap("YOUR PRIZE →")))
-                .toMenuItem()
-                .setSlots(19)
-                .build());
+            provider.getDefaultItems().put("arrow_right", createNamedHead("a6af217aeddf0f40064969ebb2042f7aeafbc7d0f175a27624133a3befd10281",
+                LIGHT_RED.wrap(BOLD.wrap("YOUR PRIZE →")), 19));
 
-            provider.getDefaultItems().put("arrow_left", FoliaItem.asCustomHead("1c5a8aa8a4c03600a2b5a4eb6beb51d590260b095ee1cdaa976b09bdfe5661c6")
-                .setDisplayName(LIGHT_RED.wrap(BOLD.wrap("← YOUR PRIZE")))
-                .toMenuItem()
-                .setSlots(21)
-                .build());
+            provider.getDefaultItems().put("arrow_left", createNamedHead("1c5a8aa8a4c03600a2b5a4eb6beb51d590260b095ee1cdaa976b09bdfe5661c6",
+                LIGHT_RED.wrap(BOLD.wrap("← YOUR PRIZE")), 21));
 
             provider.addSpinner(SpinnerBuilder.rewardBuilder().name("main").mode(SpinMode.SEQUENTAL).spinnerId(DEFAULT)
                 .slots(39, 40, 41, 33, 24, 15, 5, 4, 3, 11, 20, 29)
@@ -454,5 +444,12 @@ public class OpeningUtils {
     @NotNull
     private static WeightedItem<FoliaItem> getWeighted(@NotNull Material material, double weight) {
         return new WeightedItem<>(FoliaItem.fromType(material), weight);
+    }
+
+    @NotNull
+    private static com.notauraaa.folianightcore.ui.menu.item.MenuItem createNamedHead(@NotNull String texture, @NotNull String displayName, int slot) {
+        org.bukkit.inventory.ItemStack item = FoliaItem.asCustomHead(texture).getItemStack();
+        ItemUtil.editMeta(item, meta -> TextHelper.setDisplayName(meta, displayName));
+        return FoliaItem.fromItemStack(item).toMenuItem().setSlots(slot).build();
     }
 }

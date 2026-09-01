@@ -11,6 +11,7 @@ import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.crate.impl.Crate;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.util.InteractType;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.config.ConfigValue;
 import com.notauraaa.folianightcore.config.FileConfig;
 import com.notauraaa.folianightcore.ui.menu.MenuViewer;
@@ -22,6 +23,7 @@ import com.notauraaa.folianightcore.ui.menu.item.ItemHandler;
 import com.notauraaa.folianightcore.ui.menu.item.ItemOptions;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
@@ -94,25 +96,25 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
                 restrictions.addAll(this.noPermissionLore);
             }
 
-            return FoliaItem.fromItemStack(reward.getPreviewItem())
-                .ignoreNameAndLore()
-                .setDisplayName(this.rewardName)
-                .setLore(this.rewardLore)
-                .replacement(replacer -> {
-                        replacer
-                            .replace(GENERIC_LIMITS, limits)
-                            .replace(NO_PERMISSION, restrictions)
-                            .replace("%win_limit_amount%", limits)
-                            .replace("%win_limit_cooldown%", Collections.emptyList())
-                            .replace("%win_limit_drained%", Collections.emptyList())
-                            .replace("%win_limit_no_permission%", restrictions)
-                            .replace(reward.replacePlaceholders())
-                            .replace(crate.replacePlaceholders());
-                        if (this.applyPlaceholderAPI) {
-                            replacer.replacePlaceholderAPI(player);
-                        }
-                    }
-                );
+            Replacer replacer = Replacer.create()
+                .replace(GENERIC_LIMITS, limits)
+                .replace(NO_PERMISSION, restrictions)
+                .replace("%win_limit_amount%", limits)
+                .replace("%win_limit_cooldown%", Collections.emptyList())
+                .replace("%win_limit_drained%", Collections.emptyList())
+                .replace("%win_limit_no_permission%", restrictions)
+                .replace(reward.replacePlaceholders())
+                .replace(crate.replacePlaceholders());
+            if (this.applyPlaceholderAPI) {
+                replacer.replacePlaceholderAPI(player);
+            }
+
+            org.bukkit.inventory.ItemStack item = FoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
+            ItemUtil.editMeta(item, meta -> {
+                TextHelper.setDisplayName(meta, replacer.apply(this.rewardName));
+                TextHelper.setLore(meta, replacer.apply(this.rewardLore));
+            });
+            return FoliaItem.fromItemStack(item);
         });
 
         return autoFill.build();
@@ -171,15 +173,17 @@ public class PreviewMenu extends LinkedMenu<CratesPlugin, CrateSource> implement
         loader.addDefaultItem(new FoliaItem(Material.GRAY_STAINED_GLASS_PANE).setHideTooltip(true).toMenuItem()
             .setSlots(0,4,8,36,44));
 
-        loader.addDefaultItem(FoliaItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0")
-            .setDisplayName(GOLD.wrap(BOLD.wrap("Milestones")))
-            .toMenuItem()
-            .setPriority(10)
-            .setSlots(4)
-            .setHandler(new ItemHandler("milestones", (viewer, event) -> {
-                this.runNextTick(() -> plugin.getCrateManager().openMilestones(viewer.getPlayer(), this.getLink(viewer)));
-            }, ItemOptions.builder().setVisibilityPolicy(viewer -> this.getLink(viewer).getCrate().hasMilestones()).build()))
-        );
+        {
+            org.bukkit.inventory.ItemStack milestonesHead = FoliaItem.asCustomHead("1daf09284530ce92ed2df2a62e1b05a11f1871f85ae559042844206d66c0b5b0").getItemStack();
+            ItemUtil.editMeta(milestonesHead, meta -> TextHelper.setDisplayName(meta, GOLD.wrap(BOLD.wrap("Milestones"))));
+            loader.addDefaultItem(FoliaItem.fromItemStack(milestonesHead).toMenuItem()
+                .setPriority(10)
+                .setSlots(4)
+                .setHandler(new ItemHandler("milestones", (viewer, event) -> {
+                    this.runNextTick(() -> plugin.getCrateManager().openMilestones(viewer.getPlayer(), this.getLink(viewer)));
+                }, ItemOptions.builder().setVisibilityPolicy(viewer -> this.getLink(viewer).getCrate().hasMilestones()).build()))
+            );
+        }
 
         loader.addDefaultItem(MenuItem.buildExit(this, 40).setPriority(10));
         loader.addDefaultItem(MenuItem.buildNextPage(this, 26).setPriority(10));

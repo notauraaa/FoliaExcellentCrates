@@ -11,6 +11,7 @@ import su.nightexpress.excellentcrates.crate.impl.Rarity;
 import su.nightexpress.excellentcrates.crate.reward.AbstractReward;
 import su.nightexpress.excellentcrates.util.CrateUtils;
 import su.nightexpress.excellentcrates.util.ItemHelper;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.bridge.item.AdaptedItem;
 import com.notauraaa.folianightcore.config.ConfigValue;
 import com.notauraaa.folianightcore.config.FileConfig;
@@ -121,10 +122,10 @@ public class ItemReward extends AbstractReward {
                         meta.setItemName(replacer.apply(String.valueOf(ItemUtil.getItemNameSerialized(meta))));
                     }
                     if (meta.hasDisplayName()) {
-                        meta.setDisplayName(replacer.apply(String.valueOf(ItemUtil.getCustomNameSerialized(meta))));
+                        TextHelper.setDisplayName(meta, replacer.apply(String.valueOf(ItemUtil.getCustomNameSerialized(meta))));
                     }
                     if (meta.hasLore()) {
-                        meta.setLore(replacer.apply(ItemUtil.getLoreSerialized(meta)));
+                        TextHelper.setLore(meta, replacer.apply(ItemUtil.getLoreSerialized(meta)));
                     }
                 });
             }

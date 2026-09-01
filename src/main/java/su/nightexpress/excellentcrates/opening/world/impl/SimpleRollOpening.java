@@ -16,6 +16,7 @@ import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.opening.OpeningUtils;
 import su.nightexpress.excellentcrates.opening.world.WorldOpening;
 import su.nightexpress.excellentcrates.util.pos.WorldPos;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.util.EntityUtil;
 import com.notauraaa.folianightcore.util.LocationUtil;
 import com.notauraaa.folianightcore.util.sound.VanillaSound;
@@ -173,7 +174,7 @@ public class SimpleRollOpening extends WorldOpening {
         if (this.rewardDisplay != null) {
             ItemStack itemStack = reward.getPreviewItem();
             this.rewardDisplay.setItemStack(itemStack);
-            EntityUtil.setCustomName(this.rewardDisplay, reward.getName());
+            TextHelper.setCustomName(this.rewardDisplay, reward.getName());
         }
 
         VanillaSound.of(Sound.UI_BUTTON_CLICK, 0.5f).play(this.displayLocation);

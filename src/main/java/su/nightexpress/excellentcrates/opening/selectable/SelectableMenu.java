@@ -9,6 +9,7 @@ import org.bukkit.inventory.MenuType;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
 import su.nightexpress.excellentcrates.api.crate.Reward;
+import su.nightexpress.excellentcrates.util.TextHelper;
 import com.notauraaa.folianightcore.bridge.wrap.FoliaSound;
 import com.notauraaa.folianightcore.config.ConfigValue;
 import com.notauraaa.folianightcore.config.FileConfig;
@@ -21,6 +22,7 @@ import com.notauraaa.folianightcore.ui.menu.item.ItemHandler;
 import com.notauraaa.folianightcore.ui.menu.item.ItemOptions;
 import com.notauraaa.folianightcore.ui.menu.item.MenuItem;
 import com.notauraaa.folianightcore.ui.menu.type.LinkedMenu;
+import com.notauraaa.folianightcore.util.ItemUtil;
 import com.notauraaa.folianightcore.util.Lists;
 import com.notauraaa.folianightcore.util.bukkit.FoliaItem;
 import com.notauraaa.folianightcore.util.placeholder.Replacer;
@@ -64,11 +66,24 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
             .setSlots(this.rewardSlots)
             .setItems(opening.getCrateRewards())
             .setItemCreator(reward -> {
-                FoliaItem item = opening.isSelectedReward(reward) ? this.selectedIcon.copy() : FoliaItem.fromItemStack(reward.getPreviewItem())
-                    .setDisplayName(this.rewardName)
-                    .setLore(this.rewardLore);
-
-                return item.replacement(replacer -> replacer.replace(reward.replacePlaceholders()));
+                org.bukkit.inventory.ItemStack item = FoliaItem.fromItemStack(reward.getPreviewItem()).ignoreNameAndLore().getItemStack();
+                Replacer replacer = Replacer.create().replace(reward.replacePlaceholders());
+                if (opening.isSelectedReward(reward)) {
+                    ItemUtil.editMeta(item, meta -> {
+                        TextHelper.setDisplayName(meta, replacer.apply(GREEN.wrap(BOLD.wrap("Selected: ")) + WHITE.wrap(REWARD_NAME)));
+                        TextHelper.setLore(meta, replacer.apply(Lists.newList(
+                            GRAY.wrap("You'll get this reward."),
+                            "",
+                            GREEN.wrap("→ " + UNDERLINED.wrap("Click to unselect"))
+                        )));
+                    });
+                } else {
+                    ItemUtil.editMeta(item, meta -> {
+                        TextHelper.setDisplayName(meta, replacer.apply(this.rewardName));
+                        TextHelper.setLore(meta, replacer.apply(this.rewardLore));
+                    });
+                }
+                return FoliaItem.fromItemStack(item);
             })
             .setItemClick(reward -> (viewer1, event) -> {
                 if (opening.isSelectedReward(reward)) {
@@ -195,37 +210,47 @@ public class SelectableMenu extends LinkedMenu<CratesPlugin, SelectableOpening> 
         loader.addDefaultItem(MenuItem.buildNextPage(this, 53).setPriority(10));
         loader.addDefaultItem(MenuItem.buildPreviousPage(this, 45).setPriority(10));
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.LIME_DYE)
-            .setDisplayName(GREEN.wrap(BOLD.wrap("Confirm")))
-            .setLore(Lists.newList(
-                GRAY.wrap("You'll get the following rewards:"),
-                GENERIC_REWARDS,
-                EMPTY_IF_ABOVE,
-                GREEN.wrap("→ " + UNDERLINED.wrap("Click to confirm"))
-            ))
-            .hideAllComponents()
-            .toMenuItem()
-            .setSlots(49)
-            .setPriority(10)
-            .setHandler(new ItemHandler("confirm", (viewer, event) -> this.handleConfirm(viewer),
-                ItemOptions.builder()
-                    .setVisibilityPolicy(viewer -> this.getLink(viewer).isAllRewardsSelected())
-                    .build()
-            ))
-        );
+        {
+            org.bukkit.inventory.ItemStack confirmItem = new org.bukkit.inventory.ItemStack(Material.LIME_DYE);
+            ItemUtil.editMeta(confirmItem, meta -> {
+                TextHelper.setDisplayName(meta, GREEN.wrap(BOLD.wrap("Confirm")));
+                TextHelper.setLore(meta, Lists.newList(
+                    GRAY.wrap("You'll get the following rewards:"),
+                    GENERIC_REWARDS,
+                    EMPTY_IF_ABOVE,
+                    GREEN.wrap("→ " + UNDERLINED.wrap("Click to confirm"))
+                ));
+            });
+            loader.addDefaultItem(FoliaItem.fromItemStack(confirmItem)
+                .hideAllComponents()
+                .toMenuItem()
+                .setSlots(49)
+                .setPriority(10)
+                .setHandler(new ItemHandler("confirm", (viewer, event) -> this.handleConfirm(viewer),
+                    ItemOptions.builder()
+                        .setVisibilityPolicy(viewer -> this.getLink(viewer).isAllRewardsSelected())
+                        .build()
+                ))
+            );
+        }
 
-        loader.addDefaultItem(FoliaItem.fromType(Material.GRAY_DYE)
-            .setDisplayName(WHITE.wrap(BOLD.wrap("Confirm")) + " " + GRAY.wrap("(Not Enough)"))
-            .setLore(Lists.newList(
-                GRAY.wrap("You selected " + WHITE.wrap(GENERIC_CURRENT) + "/" + WHITE.wrap(GENERIC_AMOUNT) + " rewards."),
-                "",
-                WHITE.wrap("→ " + UNDERLINED.wrap("Click to exit"))
-            ))
-            .hideAllComponents()
-            .toMenuItem()
-            .setSlots(49)
-            .setPriority(1)
-            .setHandler(ItemHandler.forClose(this))
-        );
+        {
+            org.bukkit.inventory.ItemStack notEnoughItem = new org.bukkit.inventory.ItemStack(Material.GRAY_DYE);
+            ItemUtil.editMeta(notEnoughItem, meta -> {
+                TextHelper.setDisplayName(meta, WHITE.wrap(BOLD.wrap("Confirm")) + " " + GRAY.wrap("(Not Enough)"));
+                TextHelper.setLore(meta, Lists.newList(
+                    GRAY.wrap("You selected " + WHITE.wrap(GENERIC_CURRENT) + "/" + WHITE.wrap(GENERIC_AMOUNT) + " rewards."),
+                    "",
+                    WHITE.wrap("→ " + UNDERLINED.wrap("Click to exit"))
+                ));
+            });
+            loader.addDefaultItem(FoliaItem.fromItemStack(notEnoughItem)
+                .hideAllComponents()
+                .toMenuItem()
+                .setSlots(49)
+                .setPriority(1)
+                .setHandler(ItemHandler.forClose(this))
+            );
+        }
     }
 }
